@@ -1,0 +1,52 @@
+    <div class="modal-header">
+        <h4 class="modal-title">{{ 'Operator' | translate }}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="CloseModal();">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+            <div class="row">
+                <div class="col-xl-6 text-xs-left">
+                    <div class="form-group">
+                        <label for="name">{{ 'Name' | translate }}</label>
+                        <input class="form-control" id="name" type="text" [(ngModel)]="_operator.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="role">{{ 'Role' | translate }}</label>
+                        <input class="form-control" id="role" type="text" [(ngModel)]="_operator.role">
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input id="active" type="checkbox" checked [(ngModel)]="_operator.active" > {{'Active' | translate }}
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xl-6 text-xs-left">
+                    <div class="form-group">
+                        <label for="login">{{ 'Login' | translate }}</label>
+                        <input class="form-control" id="login" type="text" [(ngModel)]="_operator.login">
+                    </div>
+                    <div class="form-group">
+                        <label for="key">{{ 'Key' | translate }}</label>
+                        <input class="form-control" id="key" type="text" [(ngModel)]="_operator.key">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" #putMarkerButton class="btn btn-sm btn-secondary" (click)="PutViewMarker();">
+                            {{'Add view marker' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        <div class="row" style="height: 250px; width: 100%;">
+            <div class="col-xl-12 text-xs-center">
+                <app-map #map style="height: 100%; width: 100%;" ></app-map>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="CloseModal();">{{ 'Cancel' | translate }}</button>
+        <button type="button" class="btn btn-success" (click)="SaveButtonClick();">{{ 'Save' | translate }}</button>
+    </div>
+

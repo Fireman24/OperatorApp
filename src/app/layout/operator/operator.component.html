@@ -1,0 +1,31 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Operators'" [icon]="'fa-user'">
+        <button type="button" class="btn btn-link" (click)="RefreshList();"><i style="color: grey;" class="fa fa-refresh fa-2x"></i></button>
+        <button type="button" class="btn btn-primary" (click)="OnAddButtonClick();">{{ 'Add' | translate }}</button>
+    </app-page-header>
+    <div class="card-body table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ 'Name' | translate }}</th>
+                <th>{{ 'Login' | translate }}</th>
+                <th>{{ 'Role' | translate }}</th>
+                <th>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let operator of operatorsList">
+                <td>{{operator.name}}</td>
+                <td>{{operator.login}}</td>
+                <td>{{operator.role}}</td>
+                <td>
+                    <button *ngIf="operator.active" type="button" class="btn btn-danger" (click)="OnDeactivateButtonClick(operator.id);">{{ 'Deactivate' | translate }}</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
