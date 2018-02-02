@@ -5,49 +5,49 @@ import {Operator} from '../../../shared/models/Operator';
 import {MapComponent} from '../../../shared/modules/map-module/map.component';
 import {OperatorService} from '../../../shared/services/OperatorService';
 import {GpsPoint} from '../../../shared/modules/map-module/GpsPoint';
+import {DepartmentService} from '../../../shared/services/DepartmentService';
+import {Department} from '../../../shared/models/Department';
 
 @Component({
-    selector: 'app-operator-form',
-    templateUrl: './operator-form.component.html',
+    selector: 'app-department-form',
+    templateUrl: './department-form.component.html',
+    providers: [ DepartmentService]
 })
-
-
-
-export class OperatorFormComponent {
-    private _operator: Operator = new Operator();
+export class DepartmentFormComponent {
+    private _department: Department = new Department();
     @ViewChild('content') content: any;
     @ViewChild('map') map: MapComponent;
 
     @Output()
     public OnClose: EventEmitter<any> = new EventEmitter();
 
-    constructor(private modalService: NgbActiveModal, private operatorService: OperatorService) { }
+    constructor(private modalService: NgbActiveModal, private departmentService: DepartmentService) { }
 
-    set Operator(value) {
-        this._operator = value;
+    set Department(value) {
+        this._department = value;
         this.map.RemoveAllMarkers();
-        if (this._operator.geoZone != null) {
-            const geo = new GpsPoint(this._operator.geoZone.lat, this._operator.geoZone.lon);
+        if (this._department.gpsPoint != null) {
+            const geo = new GpsPoint(this._department.gpsPoint.lat, this._department.gpsPoint.lon);
             this.map.AddMarker(geo);
         }
     }
 
-    get Operator(): Operator {
-        return this._operator;
+    get Department(): Department {
+        return this._department;
     }
 
     SaveButtonClick() {
         if (this.map.markers.length > 0) {
             const m = this.map.markers[0].getLatLng();
-            this._operator.geoZone = new GpsPoint();
-            this._operator.geoZone.lon = m.lng;
-            this._operator.geoZone.lat = m.lat;
+            this._department.gpsPoint = new GpsPoint();
+            this._department.gpsPoint.lon = m.lng;
+            this._department.gpsPoint.lat = m.lat;
         }
-        this.operatorService.addOperator(this.Operator).subscribe(
-            (data: Operator) => {
-                this.Operator = data;
+        this.departmentService.addDepartment(this.Department).subscribe(
+            (data: Department) => {
+                this.Department = data;
                 this.CloseModal();
-                },
+            },
             error => console.log(error)
         );
 
@@ -56,8 +56,8 @@ export class OperatorFormComponent {
     CreateNewOperator() {
     }
 
-    EditOperator(operator: Operator) {
-        this.Operator = operator ;
+    EditOperator(department: Department) {
+        this.Department = department ;
     }
 
     PutViewMarker() {

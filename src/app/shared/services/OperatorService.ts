@@ -5,11 +5,11 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { Operator} from '../models/Operator';
+import {Backend} from './Backend';
 
 @Injectable()
-export class AdminService {
-    private ApiURL = 'http://api.fire24.kz/api2/';
-    // private ApiURL = 'http://localhost:61196/api2/';
+export class OperatorService {
+    private ApiURL = Backend.URL;
 
     constructor(private http: HttpClient) { }
 

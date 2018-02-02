@@ -9,16 +9,16 @@
                 <div class="col-xl-6 text-xs-left">
                     <div class="form-group">
                         <label for="name">{{ 'Name' | translate }}</label>
-                        <input class="form-control" id="name" type="text" [(ngModel)]="_operator.name">
+                        <input class="form-control" id="name" type="text" [(ngModel)]="Operator.name">
                     </div>
                     <div class="form-group">
                         <label for="role">{{ 'Role' | translate }}</label>
-                        <input class="form-control" id="role" type="text" [(ngModel)]="_operator.role">
+                        <input class="form-control" id="role" type="text" [(ngModel)]="Operator.role">
                     </div>
                     <div class="form-group">
                         <div class="checkbox">
                             <label>
-                                <input id="active" type="checkbox" checked [(ngModel)]="_operator.active" > {{'Active' | translate }}
+                                <input id="active" type="checkbox" checked [(ngModel)]="Operator.active" > {{'Active' | translate }}
                             </label>
                         </div>
                     </div>
@@ -27,11 +27,11 @@
                 <div class="col-xl-6 text-xs-left">
                     <div class="form-group">
                         <label for="login">{{ 'Login' | translate }}</label>
-                        <input class="form-control" id="login" type="text" [(ngModel)]="_operator.login">
+                        <input class="form-control" id="login" type="text" [(ngModel)]="Operator.login">
                     </div>
                     <div class="form-group">
                         <label for="key">{{ 'Key' | translate }}</label>
-                        <input class="form-control" id="key" type="text" [(ngModel)]="_operator.key">
+                        <input class="form-control" id="key" type="text" [(ngModel)]="Operator.key">
                     </div>
                     <div class="form-group">
                         <button type="button" #putMarkerButton class="btn btn-sm btn-secondary" (click)="PutViewMarker();">

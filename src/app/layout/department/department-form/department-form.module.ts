@@ -5,15 +5,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { MapModule} from '../../../shared/modules/map-module/map.module';
-import {OperatorFormComponent} from './operator-form.component';
 import { FormsModule } from '@angular/forms';
-import {OperatorService} from '../../../shared/services/OperatorService';
+import {DepartmentFormComponent} from './department-form.component';
 
 @NgModule({
     imports: [CommonModule, TranslateModule, NgbModule.forRoot(), MapModule, FormsModule],
-    declarations: [ OperatorFormComponent],
-    exports: [ OperatorFormComponent],
-    entryComponents: [ OperatorFormComponent],
-    providers: [ OperatorService]
+    declarations: [ DepartmentFormComponent],
+    exports: [ DepartmentFormComponent],
+    entryComponents: [ DepartmentFormComponent]
 })
-export class OperatorFormModule {}
+export class DepartmentFormModule {}

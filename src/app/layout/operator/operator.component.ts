@@ -3,7 +3,7 @@ import { routerTransition } from '../../router.animations';
 
 import { OperatorFormComponent} from './operator-form/operator-form.component';
 
-import { AdminService} from '../../shared/services/AdminService';
+import { OperatorService} from '../../shared/services/OperatorService';
 import {Operator} from '../../shared/models/Operator';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
@@ -13,7 +13,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
     templateUrl: './operator.component.html',
     styleUrls: ['./operator.component.scss'],
     animations: [routerTransition()],
-    providers: [AdminService, NgbModal]
+    providers: [OperatorService, NgbModal]
 })
 
 export class OperatorComponent implements OnInit {
@@ -21,9 +21,10 @@ export class OperatorComponent implements OnInit {
     operatorsList: Operator[] = [];
     @ViewChild('operatorForm') form: OperatorFormComponent;
 
+    loading = false;
 
 
-    constructor(private adminService: AdminService, private modalService: NgbModal) {
+    constructor(private operatorService: OperatorService, private modalService: NgbModal) {
     }
 
     ngOnInit() {
@@ -40,14 +41,18 @@ export class OperatorComponent implements OnInit {
     }
 
     OnDeactivateButtonClick(operatorId: number) {
-
-        this.adminService.deactivateOperator(operatorId).subscribe(data => {
+        this.loading = true;
+        this.operatorService.deactivateOperator(operatorId).subscribe(data => {
                 this.RefreshList();
             }
         , error => {});
     }
 
     RefreshList() {
-        this.adminService.getOperators().subscribe(data => this.operatorsList = data);
+        this.loading = true;
+        this.operatorService.getOperators().subscribe(data => {
+            this.operatorsList = data;
+            this.loading = false;
+        });
     }
 }

@@ -1,25 +1,27 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Departments'" [icon]="'fa-user'">
-        <button type="button" class="btn btn-link"><i style="color: black;" class="fa fa-refresh fa-3x"></i></button>
-        <button type="button" class="btn btn-primary">{{ 'Add' | translate }}</button>
+    <app-page-header [heading]="'Departments'" [icon]="'fa-university'">
+        <button type="button" class="btn btn-link" (click)="RefreshList();">
+            <i *ngIf="!loading" style="color: grey;" class="fa fa-refresh fa-2x"></i>
+            <i *ngIf="loading" style="color: grey;" class="fa fa-spin fa-refresh fa-2x"></i>
+        </button>
+        <button type="button" class="btn btn-primary" (click)="AddButtonClick();">{{ 'Add' | translate }}</button>
     </app-page-header>
     <div class="card-body table-responsive">
         <table class="table">
             <thead>
             <tr>
                 <th>{{ 'Name' | translate }}</th>
-                <th>{{ 'Login' | translate }}</th>
-                <th>{{ 'Role' | translate }}</th>
-                <th>
-                </th>
+                <th>{{ 'Address' | translate }}</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let operator of operatorsList">
-                <td>{{operator.name}}</td>
-                <td>{{operator.login}}</td>
-                <td>{{operator.role}}</td>
+            <tr *ngFor="let dep of departmentList">
+                <td>{{dep.name}}</td>
+                <td>{{dep.address}}</td>
                 <td>
+                    <button type="button" class="btn btn-info">{{ 'Edit' | translate }}</button>
+                    <button *ngIf="dep.active" type="button" class="btn btn-danger">{{ 'Deactivate' | translate }}</button>
                 </td>
             </tr>
             </tbody>

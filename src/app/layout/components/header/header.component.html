@@ -1,5 +1,17 @@
 <nav class="navbar navbar-expand-lg fixed-top">
-    <a class="navbar-brand" href="#">SB Admin Angular5 BS4 </a>
+
+    <a class="navbar-brand" href="#">
+        <i class="fa fa-fire" style="color: red;" aria-hidden="true"></i>
+        <style>
+            .logo-text {
+                color: hsl(20,20%,100%);
+                text-shadow:
+                -1px -1px 0 hsl(0, 0%, 86%),
+                -2px -2px 2px hsl(80, 10%, 15%);
+            }
+        </style>
+        <b class="logo-text">F24</b>
+    </a>
     <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
         <!-- <span class="navbar-toggler-icon"></span> -->
         <i class="fa fa-bars text-muted" aria-hidden="true"></i>
@@ -10,13 +22,6 @@
         </form>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item d-none d-xl-block">
-                <a
-                    href="https://github.com/start-angular/SB-Admin-BS4-Angular-2/archive/master.zip"
-                    class="nav-link btn mt-1" role="button"
-                    style="padding: .375rem 1rem !important;border-color: #999;"
-                >
-                    {{ 'Download Now' | translate }}
-                </a>
             </li> &nbsp;
             <li class="nav-item">
                 <a href="javascript:void(0)" class="nav-link mt-1"

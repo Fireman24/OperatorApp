@@ -1,6 +1,9 @@
 <div [@routerTransition]>
     <app-page-header [heading]="'Operators'" [icon]="'fa-user'">
-        <button type="button" class="btn btn-link" (click)="RefreshList();"><i style="color: grey;" class="fa fa-refresh fa-2x"></i></button>
+        <button type="button" class="btn btn-link" (click)="RefreshList();">
+            <i *ngIf="!loading" style="color: grey;" class="fa fa-refresh fa-2x"></i>
+            <i *ngIf="loading" style="color: grey;" class="fa fa-spin fa-refresh fa-2x"></i>
+        </button>
         <button type="button" class="btn btn-primary" (click)="OnAddButtonClick();">{{ 'Add' | translate }}</button>
     </app-page-header>
     <div class="card-body table-responsive">
