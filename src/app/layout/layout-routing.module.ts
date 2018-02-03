@@ -17,7 +17,8 @@ const routes: Routes = [
             { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
             { path: 'operator', loadChildren: './operator/operator.module#OperatorModule' },
-            { path: 'department', loadChildren: './department/department.module#DepartmentModule' }
+            { path: 'department', loadChildren: './department/department.module#DepartmentModule' },
+            { path: 'hydrant', loadChildren: './hydrant/hydrant.module#HydrantModule' }
         ]
     }
 ];

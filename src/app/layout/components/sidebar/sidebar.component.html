@@ -49,6 +49,9 @@
         <a [routerLink]="['/department']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-university"></i>&nbsp;{{ 'Departments' | translate }}
         </a>
+        <a [routerLink]="['/hydrant']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-adjust"></i>&nbsp;{{ 'Hydrants' | translate }}
+        </a>
         <div class="header-fields">
             <a (click)="rltAndLtr()" class="list-group-item">
                 <span><i class="fa fa-arrows-h"></i>&nbsp; RTL/LTR</span>
