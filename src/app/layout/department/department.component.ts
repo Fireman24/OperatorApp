@@ -47,9 +47,6 @@ export class DepartmentComponent implements OnInit {
             this.RefreshList();
         });
         form.EditDepartment(dep);
-        form.OnReady.subscribe(e => {
-
-        });
     }
 
     DeactivateButtonClick(id: number) {

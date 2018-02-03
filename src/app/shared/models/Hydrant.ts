@@ -3,7 +3,7 @@ import {GpsPoint} from '../modules/map-module/GpsPoint';
 
 export class Hydrant {
     id = 0;
-    revisionDate: Date;
+    revisionDate?: any;
     active = true;
     gpsPoint: GpsPoint = new GpsPoint();
     responsible: string;
