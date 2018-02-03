@@ -1,0 +1,36 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Hydrants'" [icon]="'fa-adjust'">
+        <button type="button" class="btn btn-link" (click)="RefreshList();">
+            <i *ngIf="!loading" style="color: grey;" class="fa fa-refresh fa-2x"></i>
+            <i *ngIf="loading" style="color: grey;" class="fa fa-spin fa-refresh fa-2x"></i>
+        </button>
+        <button type="button" class="btn btn-primary" (click)="AddButtonClick();">{{ 'Add' | translate }}</button>
+    </app-page-header>
+    <div class="card-body table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ 'Active' | translate }}</th>
+                <th>{{ 'Revision date' | translate }}</th>
+                <th>{{ 'Responsible' | translate }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let hyd of hydrantList">
+                <td>
+                    <i *ngIf="hyd.active" style="color: darkblue;" class="fa fa-adjust"></i>
+                    <i *ngIf="!hyd.active" style="color: darkred;" class="fa fa-adjust"></i>
+                </td>
+                <td>{{hyd.revisionDate | date}}</td>
+                <td>{{hyd.responsible}}</td>
+                <td>
+                    <button type="button" class="btn btn-info" (click)="EditButtonClick(hyd);">{{ 'Edit' | translate }}</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
