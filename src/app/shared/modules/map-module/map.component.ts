@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {icon, latLng, LatLng, Layer, marker, tileLayer} from 'leaflet';
 
 import {GeocodingService} from './geocoding.service';
@@ -15,6 +15,12 @@ export class MapComponent  implements AfterViewInit, OnDestroy {
 
     map: L.Map;
     markers: L.Marker[] = [];
+    public MapReady = false;
+
+
+    @Output()
+    public OnReady: EventEmitter<any> = new EventEmitter();
+
 
     constructor(private mapService: MapService, private geocoder: GeocodingService) {
     }
@@ -60,7 +66,7 @@ export class MapComponent  implements AfterViewInit, OnDestroy {
     ngAfterViewInit(): void {
         this.map = L.map('map', {
             zoomControl: false,
-            center: L.latLng(40.731253, -73.996139),
+            center: L.latLng(51.16052269999999, 71.4703558),
             zoom: 12,
             minZoom: 4,
             maxZoom: 19,
@@ -72,6 +78,14 @@ export class MapComponent  implements AfterViewInit, OnDestroy {
         L.control.scale().addTo(this.map);
 
         this.mapService.map = this.map;
+        this.map.whenReady(() => {
+            this.MapReady = true;
+            this.OnReady.next(null);
+
+        });
+    }
+
+    GoToMyLocation() {
         this.geocoder.getCurrentLocation()
             .subscribe(
                 location => this.map.panTo([location.latitude, location.longitude]),

@@ -20,8 +20,8 @@
                 <td>{{dep.name}}</td>
                 <td>{{dep.address}}</td>
                 <td>
-                    <button type="button" class="btn btn-info">{{ 'Edit' | translate }}</button>
-                    <button *ngIf="dep.active" type="button" class="btn btn-danger">{{ 'Deactivate' | translate }}</button>
+                    <button type="button" class="btn btn-info" (click)="EditButtonClick(dep);">{{ 'Edit' | translate }}</button>
+                    <button *ngIf="dep.active" type="button" class="btn btn-danger" (click)="DeactivateButtonClick(dep.id);">{{ 'Deactivate' | translate }}</button>
                 </td>
             </tr>
             </tbody>
