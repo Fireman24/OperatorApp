@@ -9,6 +9,7 @@ import {HydrantService} from '../../../shared/services/HydrantService';
 import {Hydrant} from '../../../shared/models/Hydrant';
 import {NgbDateNativeAdapter} from '../../../shared/adapters/NgbDateNativeAdapter';
 import {StringDateProvider} from '../../../shared/providers/StringDateProvider';
+import {Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-hydrant-form',
@@ -79,6 +80,7 @@ export class HydrantFormComponent implements AfterViewInit, OnInit {
     }
 
     SaveButtonClick() {
+        this._hydrant.revisionDate = this.revisionDateModel.toISOString();
         if (this.map.markers.length > 0) {
             const m = this.map.markers[0].getLatLng();
             this._hydrant.gpsPoint = new GpsPoint();
