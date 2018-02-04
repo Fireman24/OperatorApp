@@ -1,22 +1,25 @@
 import {
     AfterViewInit,
-    Component, EventEmitter, Input, Output, QueryList, ViewChild
+    Component, EventEmitter, Injectable, Input, OnInit, Output, QueryList, ViewChild
 } from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal, NgbDateAdapter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {MapComponent} from '../../../shared/modules/map-module/map.component';
 import {GpsPoint} from '../../../shared/modules/map-module/GpsPoint';
 import {HydrantService} from '../../../shared/services/HydrantService';
 import {Hydrant} from '../../../shared/models/Hydrant';
+import {NgbDateNativeAdapter} from '../../../shared/adapters/NgbDateNativeAdapter';
+import {StringDateProvider} from '../../../shared/providers/StringDateProvider';
 
 @Component({
     selector: 'app-hydrant-form',
     templateUrl: './hydrant-form.component.html',
-    providers: [ HydrantService]
+    providers: [ HydrantService, StringDateProvider]
 })
-export class HydrantFormComponent implements AfterViewInit {
-    private _hydrant: Hydrant = new Hydrant();
-    public hydrantRevisionDate = new Date();
+export class HydrantFormComponent implements AfterViewInit, OnInit {
 
+    revisionDateModel: Date;
+
+    private _hydrant: Hydrant = new Hydrant();
 
     @ViewChild('content') content: any;
     @ViewChild('map') map: MapComponent;
@@ -27,16 +30,22 @@ export class HydrantFormComponent implements AfterViewInit {
     public OnClose: EventEmitter<any> = new EventEmitter();
 
     @Output()
-    public OnReady: EventEmitter<any> = new EventEmitter();
+    public AfterViewInit: EventEmitter<any> = new EventEmitter();
+
+    @Output()
+    public OnInit: EventEmitter<any> = new EventEmitter();
 
 
 
     constructor(private modalService: NgbActiveModal, private hydrantService: HydrantService) { }
 
     ngAfterViewInit(): void {
-        this.OnReady.next(null);
+        this.AfterViewInit.next(null);
     }
 
+    ngOnInit(): void {
+        this.OnInit.next(null);
+    }
 
     set Hydrant(value) {
         if (value == null) {
@@ -51,12 +60,9 @@ export class HydrantFormComponent implements AfterViewInit {
                 this.DrawHydrantMarker();
             });
         }
-        try {
-            const date = new Date(this._hydrant.revisionDate);
-            this.hydrantRevisionDate.setDate( date.getDate());
-            console.warn(this.hydrantRevisionDate);
-        } catch (Exception) {
-        }
+        this.OnInit.subscribe(e => {
+            this.revisionDateModel = new Date(this._hydrant.revisionDate);
+        }, e => {} , e => {});
     }
 
     DrawHydrantMarker() {
@@ -69,13 +75,11 @@ export class HydrantFormComponent implements AfterViewInit {
     }
 
     get Hydrant(): Hydrant {
-        //this._hydrant.revisionDate = this.hydrantRevisionDate.toTimeString();
         return this._hydrant;
     }
 
     SaveButtonClick() {
-        console.warn(this.Hydrant);
-    /*    if (this.map.markers.length > 0) {
+        if (this.map.markers.length > 0) {
             const m = this.map.markers[0].getLatLng();
             this._hydrant.gpsPoint = new GpsPoint();
             this._hydrant.gpsPoint.lon = m.lng;
@@ -97,7 +101,7 @@ export class HydrantFormComponent implements AfterViewInit {
                 },
                 error => console.log(error)
             );
-        } */
+        }
     }
 
     EditHydrant(hydrant: Hydrant) {
@@ -121,5 +125,10 @@ export class HydrantFormComponent implements AfterViewInit {
         this.hydrantService.deleteHydrant(this._hydrant.id).subscribe(data => {
             this.CloseModal();
         });
+    }
+
+    putDate() {
+        const d = new Date(this._hydrant.revisionDate);
+        this.revisionDateModel = d;
     }
 }

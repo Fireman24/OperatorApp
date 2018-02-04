@@ -11,7 +11,7 @@ import { GpsPoint} from './GpsPoint';
     templateUrl: './map.component.html'
 })
 
-export class MapComponent  implements AfterViewInit, OnDestroy {
+export class MapComponent  implements  OnInit, OnDestroy {
 
     map: L.Map;
     markers: L.Marker[] = [];
@@ -63,7 +63,7 @@ export class MapComponent  implements AfterViewInit, OnDestroy {
         this.markers = [];
     }
 
-    ngAfterViewInit(): void {
+    ngOnInit(): void {
         this.map = L.map('map', {
             zoomControl: false,
             center: L.latLng(51.16052269999999, 71.4703558),

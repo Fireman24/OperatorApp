@@ -12,20 +12,15 @@
                 <input class="form-control" id="description" type="text" [(ngModel)]="Hydrant.description">
             </div>
             <div class="form-group">
-                <div class="input-group datepicker-input">
-                    <input class="form-control" placeholder="yyyy-mm-dd"
-                           name="dp" [(ngModel)]="Hydrant.revisionDate" ngbDatepicker #date="ngbDatepicker">
-                    <button class="input-group-addon" (click)="date.toggle()" type="button">
-                        <span class="fa fa-calendar"></span>
-                    </button>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input id="active" type="checkbox" checked [(ngModel)]="Hydrant.active" > {{'Active' | translate }}
-                    </label>
-                </div>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" #dateModel="ngModel"
+                               name="datePicker" [(ngModel)]="revisionDateModel" ngbDatepicker #datePicker="ngbDatepicker">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" (click)="datePicker.toggle()" type="button">
+                                <i class="fa fa-calendar"></i>
+                            </button>
+                        </div>
+                    </div>
             </div>
         </div>
         <div class="col-xl-6 text-xs-left">
@@ -33,10 +28,23 @@
                 <label for="responsible">{{ 'Responsible' | translate }}</label>
                 <input class="form-control" id="responsible" type="text" [(ngModel)]="Hydrant.responsible">
             </div>
-            <div class="form-group">
-                <button type="button" #putMarkerButton class="btn btn-sm btn-secondary" (click)="PutViewMarker();">
-                    {{'Add marker' | translate}}</button>
-        </div>
+            <div class="row">
+                <div class="col-xl-6 text-xs-left">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input id="active" type="checkbox" checked [(ngModel)]="Hydrant.active" > {{'Active' | translate }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 text-xs-right">
+                    <div class="form-group">
+                        <button type="button" #putMarkerButton class="btn btn-sm btn-secondary" (click)="PutViewMarker();">
+                            {{'Add marker' | translate}}</button>
+                    </div>
+                </div>
+            </div>
     </div>
     <div class="row" style="height: 250px; width: 100%;">
         <div class="col-xl-12 text-xs-center">
