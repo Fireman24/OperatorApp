@@ -19,7 +19,8 @@ const routes: Routes = [
             { path: 'operator', loadChildren: './operator/operator.module#OperatorModule' },
             { path: 'department', loadChildren: './department/department.module#DepartmentModule' },
             { path: 'hydrant', loadChildren: './hydrant/hydrant.module#HydrantModule' },
-            { path: 'address', loadChildren: './address/address.module#AddressModule' }
+            { path: 'address', loadChildren: './address/address.module#AddressModule' },
+            { path: 'firecar', loadChildren: './firecar/firecar.module#FireCarModule' }
         ]
     }
 ];
