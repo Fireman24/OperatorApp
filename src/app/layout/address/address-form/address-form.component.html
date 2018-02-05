@@ -1,0 +1,47 @@
+<ng-template #departmentTemplate let-r="result" let-t="term">
+    {{ r.name}}
+</ng-template>
+
+<div class="modal-header">
+    <h4 class="modal-title">{{ 'Address' | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="CloseModal();">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-xl-6 text-xs-left">
+            <div class="form-group">
+                <label for="label">{{ 'Label' | translate }}</label>
+                <input class="form-control" id="label" type="text" [(ngModel)]="Address.label">
+            </div>
+            <div class="form-group">
+                <label>{{ 'Rank' | translate }}</label>
+                <ngb-pagination [collectionSize]="30" [(page)]="Address.rank" [directionLinks]="false"></ngb-pagination>
+            </div>
+        </div>
+        <div class="col-xl-6 text-xs-right">
+            <div class="form-group">
+                <label for="departmentBox">{{'Department' | translate }}</label>
+                <input id="departmentBox" type="text" class="form-control" [(ngModel)]="Address.department"
+                       [ngbTypeahead]="search"
+                       [resultTemplate]="departmentTemplate"
+                       [inputFormatter]="departmentFormatter"/>
+            </div>
+            <div class="form-group">
+                <br>
+                <button type="button" class="btn btn-sm btn-secondary" (click)="PutViewMarker();">{{ 'Add marker' | translate }}</button>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="height: 250px; width: 100%;">
+        <div class="col-xl-12 text-xs-center">
+            <app-map #map style="height: 100%; width: 100%;"></app-map>
+        </div>
+    </div>
+</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="CloseModal();">{{ 'Cancel' | translate }}</button>
+        <button type="button" class="btn btn-success" (click)="SaveButtonClick();">{{ 'Save' | translate }}</button>
+    </div>
+

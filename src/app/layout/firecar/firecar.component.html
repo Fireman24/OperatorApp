@@ -1,0 +1,33 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Firecars'" [icon]="'fa-truck'">
+        <button type="button" class="btn btn-link" (click)="RefreshList();">
+            <i *ngIf="!loading" style="color: grey;" class="fa fa-refresh fa-2x"></i>
+            <i *ngIf="loading" style="color: grey;" class="fa fa-spin fa-refresh fa-2x"></i>
+        </button>
+        <button type="button" class="btn btn-primary" (click)="AddButtonClick();">{{ 'Add' | translate }}</button>
+    </app-page-header>
+    <div class="card-body table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ 'Name' | translate }}</th>
+                <th>{{ 'Number' | translate }}</th>
+                <th>{{ 'Specialization' | translate }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let car of fireCarsList">
+                <td>{{car.name}}</td>
+                <td>{{car.num}}</td>
+                <td>{{car.specialization}}</td>
+                <td>
+                    <button type="button" class="btn btn-info" (click)="EditButtonClick(car);">{{ 'Edit' | translate }}</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

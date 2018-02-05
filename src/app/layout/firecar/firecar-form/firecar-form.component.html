@@ -1,0 +1,62 @@
+<ng-template #departmentTemplate let-r="result" let-t="term">
+    {{ r.name}}
+</ng-template>
+
+<div class="modal-header">
+    <h4 class="modal-title">{{ 'Firecar' | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="CloseModal();">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-xl-6">
+            <fieldset class="form-group">
+                <label>{{ 'Name' | translate }}</label>
+                <input class="form-control" [(ngModel)]="FireCar.name">
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label>{{ 'Number' | translate }}</label>
+                <input class="form-control" [(ngModel)]="FireCar.num">
+            </fieldset>
+
+        </div>
+        <div class="col-xl-6">
+            <fieldset class="form-group">
+                <label for="specBox">{{'Specialization' | translate }}</label>
+                <input id="specBox" type="text" class="form-control" [(ngModel)]="FireCar.specialization"
+                       [ngbTypeahead]="searchSpec"/>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="departmentBox">{{'Department' | translate }}</label>
+                <input id="departmentBox" type="text" class="form-control" [(ngModel)]="FireCar.department"
+                       [ngbTypeahead]="searchDepartment"
+                       [resultTemplate]="departmentTemplate"
+                       [inputFormatter]="departmentFormatter"/>
+            </fieldset>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <fieldset class="form-group">
+                <label>{{ 'Broadcast' | translate }} {{ 'URL' | translate }}</label>
+                <input class="form-control" [(ngModel)]="FireCar.broadcast.url">
+            </fieldset>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-4">
+                <label>
+                    {{ 'Active' | translate }}
+                    <input type="checkbox" checked [(ngModel)]="FireCar.active"/>
+                </label>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="CloseModal();">{{ 'Cancel' | translate }}</button>
+    <button type="button" class="btn btn-success" (click)="SaveButtonClick();">{{ 'Save' | translate }}</button>
+</div>
+

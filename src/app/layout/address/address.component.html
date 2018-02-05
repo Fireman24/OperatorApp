@@ -1,0 +1,37 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Addresses'" [icon]="'fa-building'">
+        <button type="button" class="btn btn-link" (click)="RefreshList();">
+            <i *ngIf="!loading" style="color: grey;" class="fa fa-refresh fa-2x"></i>
+            <i *ngIf="loading" style="color: grey;" class="fa fa-spin fa-refresh fa-2x"></i>
+        </button>
+        <button type="button" class="btn btn-primary" (click)="AddButtonClick();">{{ 'Add' | translate }}</button>
+    </app-page-header>
+    <div class="card-body table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ 'Label' | translate }}</th>
+                <th>{{ 'Rank' | translate }}</th>
+                <th>{{ 'Department' | translate }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let addr of addressList">
+                <td>{{ addr.label }}</td>
+                <td>{{ addr.rank | number:'1.0-0' }}</td>
+                <td>
+                    <span *ngIf="addr.department != null">
+                        {{ addr.department.name }}
+                    </span>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" (click)="DeleteButtonClick(addr.id);">{{ 'Delete' | translate }}</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
