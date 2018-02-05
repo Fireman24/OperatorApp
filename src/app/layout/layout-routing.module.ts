@@ -18,7 +18,8 @@ const routes: Routes = [
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
             { path: 'operator', loadChildren: './operator/operator.module#OperatorModule' },
             { path: 'department', loadChildren: './department/department.module#DepartmentModule' },
-            { path: 'hydrant', loadChildren: './hydrant/hydrant.module#HydrantModule' }
+            { path: 'hydrant', loadChildren: './hydrant/hydrant.module#HydrantModule' },
+            { path: 'address', loadChildren: './address/address.module#AddressModule' }
         ]
     }
 ];

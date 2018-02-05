@@ -40,6 +40,10 @@ export class HydrantFormComponent implements AfterViewInit, OnInit {
 
     constructor(private modalService: NgbActiveModal, private hydrantService: HydrantService) { }
 
+    public get EditMode(): boolean {
+        return this._editMode;
+    }
+
     ngAfterViewInit(): void {
         this.AfterViewInit.next(null);
     }

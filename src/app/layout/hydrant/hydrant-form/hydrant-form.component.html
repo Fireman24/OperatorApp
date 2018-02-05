@@ -55,6 +55,6 @@
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="CloseModal();">{{ 'Cancel' | translate }}</button>
     <button type="button" class="btn btn-success" (click)="SaveButtonClick();">{{ 'Save' | translate }}</button>
-    <button type="button" class="btn btn-danger" (click)="DeleteButtonClick();">{{ 'Remove' | translate }}</button>
+    <button *ngIf="EditMode" type="button" class="btn btn-danger" (click)="DeleteButtonClick();">{{ 'Remove' | translate }}</button>
 </div>
 

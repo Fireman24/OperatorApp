@@ -52,6 +52,9 @@
         <a [routerLink]="['/hydrant']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-adjust"></i>&nbsp;{{ 'Hydrants' | translate }}
         </a>
+        <a [routerLink]="['/address']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-building"></i>&nbsp;{{ 'Addresses' | translate }}
+        </a>
         <div class="header-fields">
             <a (click)="rltAndLtr()" class="list-group-item">
                 <span><i class="fa fa-arrows-h"></i>&nbsp; RTL/LTR</span>
