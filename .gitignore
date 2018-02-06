@@ -3,6 +3,7 @@
 # compiled output
 /tmp
 /out-tsc
+/F24-win32-x64
 
 # dependencies
 /node_modules
