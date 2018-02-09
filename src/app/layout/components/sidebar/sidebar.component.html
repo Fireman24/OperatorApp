@@ -43,21 +43,47 @@
             <i class="fa fa-file-o"></i>&nbsp;{{ 'Blank Page' | translate }}
         </a>
                 -->
-        <a [routerLink]="['/operator']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-users"></i>&nbsp;{{ 'Operators' | translate }}
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('adminMenu')">
+                <span><i class="fa fa-wrench"></i>&nbsp; {{ 'Management' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'adminMenu'">
+            <ul class="submenu">
+                <li>
+                    <a [routerLink]="['/operator']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <i class="fa fa-users"></i>&nbsp;{{ 'Operators' | translate }}
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/department']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <i class="fa fa-university"></i>&nbsp;{{ 'Departments' | translate }}
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/hydrant']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <i class="fa fa-adjust"></i>&nbsp;{{ 'Hydrants' | translate }}
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/address']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <i class="fa fa-building"></i>&nbsp;{{ 'Addresses' | translate }}
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/firecar']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <i class="fa fa-truck"></i>&nbsp;{{ 'Firecars' | translate }}
+                    </a>
+                </li>
+            </ul>
+        </li>
+        </div>
+        <a routerLink="/departure" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-mail-forward"></i>&nbsp;{{ 'Departures' | translate }}
         </a>
-        <a [routerLink]="['/department']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-university"></i>&nbsp;{{ 'Departments' | translate }}
+        <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-th-list"></i>&nbsp;{{ 'Component' | translate }}
         </a>
-        <a [routerLink]="['/hydrant']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-adjust"></i>&nbsp;{{ 'Hydrants' | translate }}
-        </a>
-        <a [routerLink]="['/address']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-building"></i>&nbsp;{{ 'Addresses' | translate }}
-        </a>
-        <a [routerLink]="['/firecar']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-truck"></i>&nbsp;{{ 'Firecars' | translate }}
-        </a>
+
         <div class="header-fields">
             <a (click)="rltAndLtr()" class="list-group-item">
                 <span><i class="fa fa-arrows-h"></i>&nbsp; RTL/LTR</span>

@@ -20,7 +20,8 @@ const routes: Routes = [
             { path: 'department', loadChildren: './department/department.module#DepartmentModule' },
             { path: 'hydrant', loadChildren: './hydrant/hydrant.module#HydrantModule' },
             { path: 'address', loadChildren: './address/address.module#AddressModule' },
-            { path: 'firecar', loadChildren: './firecar/firecar.module#FireCarModule' }
+            { path: 'firecar', loadChildren: './firecar/firecar.module#FireCarModule' },
+            { path: 'departure', loadChildren: './departure-list/departure-list.module#DepartureListModule' }
         ]
     }
 ];
