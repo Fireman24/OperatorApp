@@ -10,7 +10,6 @@ import {FireCarFormComponent} from './firecar-form/firecar-form.component';
 @Component({
     selector: 'app-firecar',
     templateUrl: './firecar.component.html',
-    animations: [routerTransition()],
     providers: [FireCarService, NgbModal]
 })
 

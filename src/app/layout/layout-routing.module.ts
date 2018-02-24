@@ -21,7 +21,8 @@ const routes: Routes = [
             { path: 'hydrant', loadChildren: './hydrant/hydrant.module#HydrantModule' },
             { path: 'address', loadChildren: './address/address.module#AddressModule' },
             { path: 'firecar', loadChildren: './firecar/firecar.module#FireCarModule' },
-            { path: 'departure', loadChildren: './departure-list/departure-list.module#DepartureListModule' }
+            { path: 'departure', loadChildren: './departure-list/departure-list.module#DepartureListModule' },
+            { path: 'map-page', loadChildren: './map-page/map-page.module#MapPageModule' }
         ]
     }
 ];

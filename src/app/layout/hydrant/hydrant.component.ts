@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {OperatorService} from '../../shared/services/OperatorService';
-import {routerTransition} from '../../router.animations';
 import {HydrantService} from '../../shared/services/HydrantService';
 import {Hydrant} from '../../shared/models/Hydrant';
 import {HydrantFormComponent} from './hydrant-form/hydrant-form.component';
@@ -9,7 +7,6 @@ import {HydrantFormComponent} from './hydrant-form/hydrant-form.component';
 @Component({
     selector: 'app-hydrant',
     templateUrl: './hydrant.component.html',
-    animations: [routerTransition()],
     providers: [HydrantService, NgbModal]
 })
 

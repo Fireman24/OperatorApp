@@ -12,7 +12,6 @@ import {AddDepartureModalComponent} from './add-departure-modal/add-departure-mo
 @Component({
     selector: 'app-departure-list',
     templateUrl: './departure-list.component.html',
-    animations: [routerTransition()],
     providers: [DepartureService, StorageService, NgbModal]
 })
 

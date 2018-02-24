@@ -7,4 +7,8 @@ export class Address {
     lon: number;
     rank: number;
     department?: Department;
+
+    public toString = (): string => {
+        return this.label;
+    }
 }

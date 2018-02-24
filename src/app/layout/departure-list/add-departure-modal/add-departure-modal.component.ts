@@ -1,51 +1,91 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Injectable, OnInit, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {DepartureService} from '../../../shared/services/DepartureService';
 import {Observable} from 'rxjs/Observable';
+import {Departure} from '../../../shared/models/Departure';
+import {Address} from '../../../shared/models/Address';
+import {AddressService} from '../../../shared/services/AddressService';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {of} from 'rxjs/observable/of';
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
-
-
-const statesWithFlags = [
-    {'label': 'Alabama', 'flag': '5/5c/Flag_of_Alabama.svg/45px-Flag_of_Alabama.svg.png'},
-    {'label': 'Alaska', 'flag': 'e/e6/Flag_of_Alaska.svg/43px-Flag_of_Alaska.svg.png'},
-    {'label': 'Arizona', 'flag': '9/9d/Flag_of_Arizona.svg/45px-Flag_of_Arizona.svg.png'},
-    {'label': 'Arkansas', 'flag': '9/9d/Flag_of_Arkansas.svg/45px-Flag_of_Arkansas.svg.png'},
-    {'label': 'California', 'flag': '0/01/Flag_of_California.svg/45px-Flag_of_California.svg.png'},
-    {'label': 'Colorado', 'flag': '4/46/Flag_of_Colorado.svg/45px-Flag_of_Colorado.svg.png'}
-];
-
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/merge';
+import {GpsPoint} from '../../../shared/modules/map-module/GpsPoint';
+import {StringDateProvider} from '../../../shared/providers/StringDateProvider';
 
 @Component({
     selector: 'app-add-departure-modal',
     templateUrl: './add-departure-modal.component.html',
-    providers: [ DepartureService]
+    providers: [ DepartureService, AddressService, StringDateProvider]
 })
 export class AddDepartureModalComponent implements OnInit {
+
+    private _departure: Departure = new Departure();
+
     @Output()
     public OnClose: EventEmitter<any> = new EventEmitter();
 
-    public model: any;
+    private _address: Address = new Address();
+    public AddressSearching = false;
+    public AddressSearchFailed = false;
+    public hideSearchingAddress = new Observable(() => () => this.AddressSearching = false);
 
-    search = (text$: Observable<string>) =>
+    public SearchAddress = (text$: Observable<string>) =>
         text$
-            .debounceTime(200)
-            .map(term => term === '' ? []
-                : statesWithFlags.filter(v => v.label.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+            .debounceTime(300)
+            .distinctUntilChanged()
+            .do(() => this.AddressSearching = true)
+            .switchMap(term => term === '' ? [] :
+                this._addressService.getAddressesStartWith(term)
+                    .do(() => this.AddressSearchFailed = false)
+                    .catch(() => {
+                        this.AddressSearchFailed = true;
+                        return of([]);
+                    }))
+            .do(() => this.AddressSearching = false)
+            .merge(this.hideSearchingAddress)
 
-    formatter = (x: {label: string}) => x.label;
+    public get Address(): Address {
+        return this._address;
+    }
+
+    public set Address(value: Address) {
+        if ( value === null ) {
+            return;
+        }
+        this._address = value;
+        this._departure.address = this._address.label;
+        this._departure.gpsPoint.lat = this._address.lat;
+        this._departure.gpsPoint.lon = this._address.lon;
+    }
 
 
     constructor(private _modalService: NgbActiveModal,
-                private _departureService: DepartureService) { }
+                private _departureService: DepartureService,
+                public _addressService: AddressService) {
+    }
 
     ngOnInit(): void {
-
     }
 
     CloseModal() {
         this._modalService.close();
         this.OnClose.next(null);
+    }
+
+    AddressFormatter (x: Address) {
+        return x.label;
+    }
+
+    SaveButtonClick() {
+        this._departure.dateTime = new Date(Date.now()).toISOString();
+        this._departureService.addDeparture(this._departure).subscribe(data => {
+            this.CloseModal();
+        });
     }
 
 }

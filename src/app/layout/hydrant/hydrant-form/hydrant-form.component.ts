@@ -133,8 +133,4 @@ export class HydrantFormComponent implements AfterViewInit, OnInit {
         });
     }
 
-    putDate() {
-        const d = new Date(this._hydrant.revisionDate);
-        this.revisionDateModel = d;
-    }
 }

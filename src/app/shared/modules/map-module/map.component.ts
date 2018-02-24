@@ -42,6 +42,23 @@ export class MapComponent  implements  OnInit, OnDestroy {
         this.markers.push(mk);
     }
 
+    AddIcon(point: GpsPoint, imageUrl: string): L.Marker {
+        const mk = L.marker([point.lat, point.lon], {
+            icon: L.icon({
+                iconUrl: (imageUrl),
+                iconSize: [30, 30]
+            }),
+            draggable: false
+        });
+        mk.addTo(this.mapService.map);
+        /* .bindPopup('Marker #', {
+             offset: L.point(12, 6)
+         })
+         .addTo(this.mapService.map)
+         .openPopup(); */
+        return mk;
+    }
+
     GetCenterLtLn(): GpsPoint {
         const point = new GpsPoint();
         const center = this.map.getCenter();

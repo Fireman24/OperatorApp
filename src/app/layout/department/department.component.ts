@@ -9,7 +9,6 @@ import {DepartmentFormComponent} from './department-form/department-form.compone
 @Component({
     selector: 'app-department',
     templateUrl: './department.component.html',
-    animations: [routerTransition()],
     providers: [DepartmentService, NgbModal]
 })
 

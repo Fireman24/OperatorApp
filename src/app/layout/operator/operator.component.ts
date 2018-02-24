@@ -12,7 +12,6 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
     selector: 'app-operator',
     templateUrl: './operator.component.html',
     styleUrls: ['./operator.component.scss'],
-    animations: [routerTransition()],
     providers: [OperatorService, NgbModal]
 })
 

@@ -8,7 +8,6 @@ import {AddressFormComponent} from './address-form/address-form.component';
 @Component({
     selector: 'app-address',
     templateUrl: './address.component.html',
-    animations: [routerTransition()],
     providers: [AddressService, NgbModal]
 })
 
