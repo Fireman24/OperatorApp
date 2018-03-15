@@ -7,6 +7,7 @@ import {Departure} from '../../shared/models/Departure';
 import {DepartureService} from '../../shared/services/DepartureService';
 import {FireCarFormComponent} from '../firecar/firecar-form/firecar-form.component';
 import {AddDepartureModalComponent} from './add-departure-modal/add-departure-modal.component';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class DepartureListComponent implements OnInit {
 
     constructor(private _departureService: DepartureService,
                 private _storage: StorageService,
-                private _modalService: NgbModal ) {
+                private _modalService: NgbModal,
+                private router: Router ) {
         const alert = _storage.GetLocalAsBoolean(this._departureAlert);
         this._hideAlert = alert;
     }
@@ -56,6 +58,7 @@ export class DepartureListComponent implements OnInit {
     }
 
     ManageButtonClick(dep: Departure) {
-
+        this.router.navigate(
+            ['/departure', dep.id]);
     }
 }

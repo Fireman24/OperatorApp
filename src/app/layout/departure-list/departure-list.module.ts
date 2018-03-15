@@ -6,13 +6,12 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { PageHeaderModule } from '../../shared/';
 import {DepartureListComponent} from './departure-list.component';
 import {DepartureListRoutingModule} from './departure-list-routing.module';
-import {FormModule} from '../form/form.module';
 import {AddDepartureModalComponent} from './add-departure-modal/add-departure-modal.component';
 import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
-    imports: [CommonModule, DepartureListRoutingModule, PageHeaderModule, TranslateModule, FormModule, NgbModule.forRoot(), FormsModule],
+    imports: [CommonModule, DepartureListRoutingModule, PageHeaderModule, TranslateModule, NgbModule.forRoot(), FormsModule],
     declarations: [DepartureListComponent, AddDepartureModalComponent],
     entryComponents: [AddDepartureModalComponent]
 })

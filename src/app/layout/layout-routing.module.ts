@@ -22,6 +22,7 @@ const routes: Routes = [
             { path: 'address', loadChildren: './address/address.module#AddressModule' },
             { path: 'firecar', loadChildren: './firecar/firecar.module#FireCarModule' },
             { path: 'departure', loadChildren: './departure-list/departure-list.module#DepartureListModule' },
+            { path: 'departure/:id', loadChildren: './departure/departure.module#DepartureModule' },
             { path: 'map-page', loadChildren: './map-page/map-page.module#MapPageModule' }
         ]
     }

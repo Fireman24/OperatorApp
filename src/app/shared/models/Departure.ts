@@ -2,6 +2,7 @@ import {GpsPoint} from '../modules/map-module/GpsPoint';
 import {Operator} from './Operator';
 import {FireCar} from './FireCar';
 import {Image} from './Image';
+import {HistoryRecord} from './HistoryRecord';
 
 export class Departure {
     id = 0;
@@ -17,6 +18,6 @@ export class Departure {
     gpsPoint: GpsPoint = new GpsPoint();
     operator?: Operator;
     fireCars: FireCar[] = [];
-    history: History[] = [];
+    history: HistoryRecord[] = [];
     images: Image[] = [];
 }
