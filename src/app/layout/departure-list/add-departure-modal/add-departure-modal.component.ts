@@ -59,8 +59,8 @@ export class AddDepartureModalComponent implements OnInit {
         }
         this._address = value;
         this._departure.address = this._address.label;
-        this._departure.gpsPoint.lat = this._address.lat;
-        this._departure.gpsPoint.lon = this._address.lon;
+        this._departure.gpsPoint = this._address.gpsPoint;
+        this._departure.gpsPoint.id = 0;
     }
 
 

@@ -19,6 +19,10 @@
                 <label>{{ 'Rank' | translate }}</label>
                 <ngb-pagination [collectionSize]="30" [(page)]="Address.rank" [directionLinks]="false"></ngb-pagination>
             </div>
+            <div class="form-group">
+                <label for="place">{{ 'Place' | translate }}</label>
+                <input class="form-control" id="place" type="text" [(ngModel)]="Address.place">
+            </div>
         </div>
         <div class="col-xl-6 text-xs-right">
             <div class="form-group">
@@ -27,6 +31,14 @@
                        [ngbTypeahead]="search"
                        [resultTemplate]="departmentTemplate"
                        [inputFormatter]="departmentFormatter"/>
+            </div>
+            <div class="form-group">
+                <label for="cat">{{'Category' | translate }}</label>
+                <input id="cat" type="text" class="form-control" [(ngModel)]="Address.category"/>
+            </div>
+            <div class="form-group">
+                <label for="desc">{{'Description' | translate }}</label>
+                <input id="desc" type="text" class="form-control" [(ngModel)]="Address.description"/>
             </div>
             <div class="form-group">
                 <br>

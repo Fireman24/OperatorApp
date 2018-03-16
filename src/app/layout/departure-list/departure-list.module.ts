@@ -8,10 +8,11 @@ import {DepartureListComponent} from './departure-list.component';
 import {DepartureListRoutingModule} from './departure-list-routing.module';
 import {AddDepartureModalComponent} from './add-departure-modal/add-departure-modal.component';
 import {FormsModule} from '@angular/forms';
+import {MomentModule} from 'angular2-moment';
 
 
 @NgModule({
-    imports: [CommonModule, DepartureListRoutingModule, PageHeaderModule, TranslateModule, NgbModule.forRoot(), FormsModule],
+    imports: [CommonModule, DepartureListRoutingModule, PageHeaderModule, TranslateModule, NgbModule.forRoot(), FormsModule, MomentModule],
     declarations: [DepartureListComponent, AddDepartureModalComponent],
     entryComponents: [AddDepartureModalComponent]
 })

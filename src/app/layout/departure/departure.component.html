@@ -1,14 +1,14 @@
 <div>
     <div class="row">
-        <div class="col">
+        <div class="col-xl-6 text-xl-left">
             <h3>{{_departure.address}}</h3>
         </div>
-        <div class=" col-2 align-self-end">
-            <button type="button" class="btn btn-link">
+        <div class="col-xl-6 text-xl-right">
+            <button type="button" class="btn btn-link" (click)="ReloadData();">
                 <i *ngIf="!_loading" style="color: grey;" class="fa fa-refresh fa-2x"></i>
                 <i *ngIf="_loading" style="color: grey;" class="fa fa-spin fa-refresh fa-2x"></i>
             </button>
-            <button type="button" class="btn btn-success" >{{ 'Save' | translate }}</button>
+            <button type="button" class="btn btn-success" (click)="SaveData();">{{ 'Save' | translate }}</button>
         </div>
     </div>
     <div class="card-body table-responsive">
@@ -50,14 +50,18 @@
                     </label>
                 </div>
             </div>
+            <div class="col">
+                <i>{{ 'Date' | translate }} {{ 'Time' | translate }}: {{ _departure.dateTime | amFromUtc | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm' }}</i>
+                <button *ngIf="false" type="button" class="btn btn-sm btn-link">{{ 'Edit' | translate }}</button>
+            </div>
         </div>
         <div class="row">
             <div class="card col">
                 <div class="card-header row">
-                    <div class="col">
+                    <div class="col-xl-6 text-xl-left">
                         <h3>{{'Firecars' | translate }}</h3>
                     </div>
-                    <div class="col-1 align-self-end">
+                    <div class="col-xl-6 text-xl-right">
                         <button type="button" class="btn btn-primary -align-right" >{{ 'Add' | translate }}</button>
                     </div>
                 </div>
@@ -93,10 +97,10 @@
         <div class="row">
             <div class="card col">
                 <div class="card-header row">
-                    <div class="col">
+                    <div class="col-xl-6 text-xl-left">
                         <h3>{{'Documents' | translate }}</h3>
                     </div>
-                    <div class="col-1 align-self-end">
+                    <div class="col-xl-6 text-xl-right">
                         <button type="button" class="btn btn-primary -align-right" >{{ 'Add' | translate }}</button>
                     </div>
                 </div>
@@ -124,16 +128,16 @@
         <div class="row">
             <div class="card col">
                 <div class="card-header row">
-                    <div class="col">
+                    <div class="col-xl-6 text-xl-left">
                         <h3>{{'History' | translate }}</h3>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="{{ 'Message' | translate }}">
+                            <input type="text" #htext class="form-control" placeholder="{{ 'Message' | translate }}">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button">{{ 'Add' | translate }}</button>
+                                <button class="btn btn-outline-secondary" (click)="AddHistoryRecord(htext.value);" type="button">{{ 'Add' | translate }}</button>
                             </div>
                         </div>
                     </div>
@@ -147,7 +151,7 @@
                         <tbody>
                         <tr *ngFor="let hys of _departure.history">
                             <td>{{hys.record}}</td>
-                            <td>{{hys.dateTime | date:'hh:mm dd.MM.yyyy'}}</td>
+                            <td>{{hys.dateTime | amFromUtc | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm'}}</td>
                         </tr>
                         </tbody>
                     </table>

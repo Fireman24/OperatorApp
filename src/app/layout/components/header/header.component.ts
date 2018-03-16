@@ -8,14 +8,14 @@ import { TranslateService } from '@ngx-translate/core';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-    pushRightClass: string = 'push-right';
+    pushRightClass = 'push-right';
 
     constructor(private translate: TranslateService, public router: Router) {
 
-        this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
-        this.translate.setDefaultLang('en');
+        this.translate.addLangs(['en', 'ru', 'kz']);
+        this.translate.setDefaultLang('ru');
         const browserLang = this.translate.getBrowserLang();
-        this.translate.use(browserLang.match(/en|fr|ur|es|it|fa|de/) ? browserLang : 'en');
+        this.translate.use(browserLang.match(/en|ru|kz/) ? browserLang : 'ru');
 
         this.router.events.subscribe(val => {
             if (

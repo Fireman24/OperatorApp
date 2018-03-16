@@ -8,4 +8,5 @@ export class Hydrant {
     gpsPoint: GpsPoint = new GpsPoint();
     responsible: string;
     description: string;
+    waterType: string;
 }

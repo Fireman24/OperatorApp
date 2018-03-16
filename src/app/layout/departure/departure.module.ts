@@ -6,11 +6,12 @@ import {TranslateModule} from '@ngx-translate/core';
 import {FormsModule} from '@angular/forms';
 import {PageHeaderModule} from '../../shared';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MomentModule} from 'angular2-moment';
 
 
 
 @NgModule({
-    imports: [CommonModule, DepartureRoutingModule, PageHeaderModule, TranslateModule, NgbModule.forRoot(), FormsModule],
+    imports: [CommonModule, DepartureRoutingModule, PageHeaderModule, TranslateModule, NgbModule.forRoot(), FormsModule, MomentModule],
     declarations: [DepartureComponent]
 })
 export class DepartureModule {}

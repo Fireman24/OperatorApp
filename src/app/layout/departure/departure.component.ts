@@ -3,6 +3,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {Departure} from '../../shared/models/Departure';
 import {DepartureService} from '../../shared/services/DepartureService';
+import * as moment from 'moment';
+import {Observable} from 'rxjs/Observable';
+import {HistoryRecord} from '../../shared/models/HistoryRecord';
 
 @Component({
     selector: 'app-departure',
@@ -16,6 +19,7 @@ export class DepartureComponent implements OnInit {
     _loading: boolean;
     _departure: Departure = new Departure();
 
+
     constructor(private _activateRoute: ActivatedRoute,
                 private _router: Router,
                 private _departureService: DepartureService) {
@@ -23,11 +27,27 @@ export class DepartureComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.ReloadData();
+    }
+
+    public ReloadData() {
         this._loading = true;
         this._departureService.getDepartureById(this.id).subscribe(data => {
             this._departure = data;
             this._loading = false;
         });
+    }
+
+    public SaveData() {
+        this._loading = true;
+        this._departureService.updateDeparture(this._departure).subscribe(data => this.ReloadData());
+    }
+
+    public AddHistoryRecord(value: string) {
+        const hrecord = new HistoryRecord();
+        hrecord.dateTime =  new Date(Date.now()).toISOString();
+        hrecord.record = value;
+        this._departure.history.push(hrecord);
     }
 
 

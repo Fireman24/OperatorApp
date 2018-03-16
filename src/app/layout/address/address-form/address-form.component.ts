@@ -61,10 +61,10 @@ export class AddressFormComponent implements OnInit {
 
     DrawAddressMarker() {
             this.map.RemoveAllMarkers();
-            if (this._address.lat !== 0) {
-                const geo = new GpsPoint(this._address.lat, this._address.lon);
+            if (this._address.gpsPoint.lat !== 0) {
+                const geo = new GpsPoint(this._address.gpsPoint.lat, this._address.gpsPoint.lon);
                 this.map.AddMarker(geo);
-                this.map.map.panTo([this._address.lat, this._address.lon]);
+                this.map.map.panTo([this._address.gpsPoint.lat, this._address.gpsPoint.lon]);
         }
     }
 
@@ -75,8 +75,8 @@ export class AddressFormComponent implements OnInit {
     SaveButtonClick() {
         if (this.map.markers.length > 0) {
             const m = this.map.markers[0].getLatLng();
-            this._address.lon = m.lng;
-            this._address.lat = m.lat;
+            this._address.gpsPoint.lon = m.lng;
+            this._address.gpsPoint.lat = m.lat;
         }
         console.warn(this.Address);
             this.addressService.addAddress(this._address).subscribe(

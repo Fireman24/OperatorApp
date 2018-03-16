@@ -1,5 +1,5 @@
 <div>
-    <app-page-header [heading]="'Departures'" [icon]="'fa-mail-forward'">
+    <app-page-header [heading]="'Departures'  | translate" [icon]="'fa-mail-forward'">
         <button type="button" class="btn btn-link" (click)="RefreshList();">
             <i *ngIf="!_loading" style="color: grey;" class="fa fa-refresh fa-2x"></i>
             <i *ngIf="_loading" style="color: grey;" class="fa fa-spin fa-refresh fa-2x"></i>
@@ -22,7 +22,7 @@
             <tbody>
             <tr *ngFor="let dep of _departures">
                 <td>{{ dep.address}}</td>
-                <td>{{ dep.dateTime | date:'hh:mm dd.MM.yyyy' }}</td>
+                <td>{{ dep.dateTime | amFromUtc | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm' }}</td>
                 <td>{{ dep.intent}}</td>
                 <td>
                     <button type="button" class="btn btn-info" (click)="ManageButtonClick(dep);">{{ 'Manage' | translate }}</button>

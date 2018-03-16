@@ -1,5 +1,5 @@
-<div [@routerTransition]>
-    <app-page-header [heading]="'Addresses'" [icon]="'fa-building'">
+<div>
+    <app-page-header [heading]="'Addresses' | translate" [icon]="'fa-building'">
         <button type="button" class="btn btn-link" (click)="RefreshList();">
             <i *ngIf="!loading" style="color: grey;" class="fa fa-refresh fa-2x"></i>
             <i *ngIf="loading" style="color: grey;" class="fa fa-spin fa-refresh fa-2x"></i>
