@@ -1,0 +1,34 @@
+
+<div class="modal-header">
+    <h4 class="modal-title">{{ 'Add firecar' | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="CloseModal();">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col">
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-primary" id="departments" ngbDropdownToggle>{{ 'Departments' | translate}}</button>
+                <div ngbDropdownMenu aria-labelledby="departments">
+                    <button *ngFor="let d of _departments" class="dropdown-item" (click)="SelectDepartment(d);" placement="right" ngbTooltip="{{d.address}}">
+                        {{d.name}}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-primary" id="firecars" ngbDropdownToggle>{{'Firecars' | translate }}</button>
+                <div ngbDropdownMenu aria-labelledby="firecars">
+                    <button *ngFor="let c of _cars" class="dropdown-item" (click)="SelectCar(c);" placement="right" ngbTooltip="{{c.specialization}}">
+                        {{c.name}}
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,36 @@
+<div>
+    <app-page-header [heading]="'Fires'  | translate" [icon]="'fa-mail-forward'">
+        <button type="button" class="btn btn-link" (click)="RefreshList();">
+            <i *ngIf="!_loading" style="color: grey;" class="fa fa-refresh fa-2x"></i>
+            <i *ngIf="_loading" style="color: grey;" class="fa fa-spin fa-refresh fa-2x"></i>
+        </button>
+        <button type="button" class="btn btn-primary" (click)="AddButtonClick();">{{ 'Add' | translate }}</button>
+    </app-page-header>
+    <div class="card-body table-responsive">
+            <ngb-alert *ngIf="!_hideAlert" type="info" (close)="CloseAlert();">
+                {{ 'Only active are shown.' | translate }}
+            </ngb-alert>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ 'Address' | translate }}</th>
+                <th>{{ 'Time' | translate }}</th>
+                <th>{{ 'Intent' | translate }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let dep of _departures">
+                <td>{{ dep.address}}</td>
+                <td>{{ dep.dateTime | amFromUtc | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm' }}</td>
+                <td>{{ dep.intent}}</td>
+                <td>
+                    <button type="button" class="btn btn-info" (click)="ManageButtonClick(dep);">{{ 'Manage' | translate }}</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

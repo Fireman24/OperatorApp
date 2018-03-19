@@ -36,4 +36,8 @@ export class DepartureService {
         return this.http.post(Backend.URL + 'departure/' + idDeparture + '/firecar', car);
     }
 
+    deleteFirecar(idDeparture: number, car: FireCar) {
+        return this.http.delete(Backend.URL + 'departure/' + idDeparture + '/firecar/' + car.id);
+    }
+
 }

@@ -7,11 +7,15 @@ import {FormsModule} from '@angular/forms';
 import {PageHeaderModule} from '../../shared';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MomentModule} from 'angular2-moment';
+import {AddDepartureModalComponent} from '../departure-list/add-departure-modal/add-departure-modal.component';
+import {AddCarModalComponent} from './add-car-modal/add-car-modal.component';
 
 
 
 @NgModule({
     imports: [CommonModule, DepartureRoutingModule, PageHeaderModule, TranslateModule, NgbModule.forRoot(), FormsModule, MomentModule],
-    declarations: [DepartureComponent]
+    declarations: [DepartureComponent, AddCarModalComponent],
+    entryComponents: [AddCarModalComponent]
+
 })
 export class DepartureModule {}

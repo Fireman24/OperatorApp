@@ -6,6 +6,10 @@ import {DepartureService} from '../../shared/services/DepartureService';
 import * as moment from 'moment';
 import {Observable} from 'rxjs/Observable';
 import {HistoryRecord} from '../../shared/models/HistoryRecord';
+import {AddDepartureModalComponent} from '../departure-list/add-departure-modal/add-departure-modal.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {AddCarModalComponent} from './add-car-modal/add-car-modal.component';
+import {FireCar} from '../../shared/models/FireCar';
 
 @Component({
     selector: 'app-departure',
@@ -22,7 +26,8 @@ export class DepartureComponent implements OnInit {
 
     constructor(private _activateRoute: ActivatedRoute,
                 private _router: Router,
-                private _departureService: DepartureService) {
+                private _departureService: DepartureService,
+                private _modalService: NgbModal) {
         this.subscription = _activateRoute.params.subscribe(params => this.id = params['id']);
     }
 
@@ -35,6 +40,19 @@ export class DepartureComponent implements OnInit {
         this._departureService.getDepartureById(this.id).subscribe(data => {
             this._departure = data;
             this._loading = false;
+        });
+    }
+
+    AddCarButtonClick() {
+        const modalRef = this._modalService.open(AddCarModalComponent);
+        const form = modalRef.componentInstance;
+        form.OnClose.subscribe(e => {
+            if ( form.car != null) {
+                this._departureService.addFirecar(this._departure.id, form.car).subscribe(data => {
+                    this.ReloadData();
+                });
+            }
+
         });
     }
 
@@ -51,4 +69,7 @@ export class DepartureComponent implements OnInit {
     }
 
 
+    RemoveFirecar(car: FireCar) {
+        this._departureService.deleteFirecar(this._departure.id, car).subscribe(data => this.ReloadData());
+    }
 }

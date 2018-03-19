@@ -1,0 +1,30 @@
+
+<div class="modal-header">
+    <h4 class="modal-title">{{ 'Departure' | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="CloseModal();">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+        <label for="address">{{'Address' | translate }}:</label>
+        <input id="address" type="text"
+               [resultFormatter]="AddressFormatter"
+               [inputFormatter]="AddressFormatter"
+               class="form-control"
+               [class.is-invalid]="AddressSearchFailed"
+               [(ngModel)]="Address"
+               [ngbTypeahead]="SearchAddress" />
+        <span *ngIf="AddressSearching">{{ 'Searching' | translate }}...</span>
+        <div class="invalid-feedback" *ngIf="AddressSearchFailed"> {{ 'Not found' | translate }}</div>
+    </div>
+    <div class="form-group">
+        <label for="intent">{{ 'Intent' | translate }}</label>
+        <input id="intent" type="text" [(ngModel)]="_departure.intent" class="form-control"/>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="CloseModal();">{{ 'Cancel' | translate }}</button>
+    <button type="button" class="btn btn-success" (click)="SaveButtonClick();">{{ 'Save' | translate }}</button>
+</div>
+

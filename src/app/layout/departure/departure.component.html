@@ -62,7 +62,7 @@
                         <h3>{{'Firecars' | translate }}</h3>
                     </div>
                     <div class="col-xl-6 text-xl-right">
-                        <button type="button" class="btn btn-primary -align-right" >{{ 'Add' | translate }}</button>
+                        <button type="button" class="btn btn-primary -align-right" (click)="AddCarButtonClick();">{{ 'Add' | translate }}</button>
                     </div>
                 </div>
                 <div class="card-body">
@@ -71,7 +71,6 @@
                         <tr>
                             <th scope="col">{{ 'Name' | translate }}</th>
                             <th scope="col">{{ 'Specialization' | translate }}</th>
-                            <th scope="col">{{ 'Department' | translate }}</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -80,12 +79,7 @@
                             <td>{{car.name}}</td>
                             <td>{{car.specialization}}</td>
                             <td>
-                                <ng-container *ngIf="car.department != null">
-                                    {{car.department.name}}
-                                </ng-container>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" >{{ 'Remove' | translate }}</button>
+                                <button type="button" class="btn btn-danger" (click)="RemoveFirecar(car);" >{{ 'Remove' | translate }}</button>
                             </td>
                         </tr>
                         </tbody>
