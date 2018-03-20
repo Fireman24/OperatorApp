@@ -9,7 +9,7 @@ import {Backend} from './Backend';
 
 @Injectable()
 export class OperatorService {
-    private ApiURL = Backend.URL;
+    private ApiURL = Backend.API_URL;
 
     constructor(private http: HttpClient) { }
 

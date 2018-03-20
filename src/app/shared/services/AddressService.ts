@@ -11,25 +11,25 @@ export class AddressService {
     constructor(private http: HttpClient) { }
 
     getAddressesStartWith(addressLabel?: string): Observable<Address[]> {
-        const addrs = this.http.get(Backend.URL + 'address?value=' + addressLabel);
+        const addrs = this.http.get(Backend.API_URL + 'address?value=' + addressLabel);
         return <Observable<Address [] >> addrs;
     }
 
     getAddresses(): Observable<Address[]> {
-        const addrs = this.http.get(Backend.URL + 'address/');
+        const addrs = this.http.get(Backend.API_URL + 'address/');
         return <Observable<Address [] >> addrs;
     }
 
     getAddressById( id: number ): Observable< Address > {
-        return <Observable<Address>>this.http.get(`${Backend.URL}address/${id}`);
+        return <Observable<Address>>this.http.get(`${Backend.API_URL}address/${id}`);
     }
 
     deleteAddress(id: number)  {
-        return this.http.delete(Backend.URL + 'address/' + id);
+        return this.http.delete(Backend.API_URL + 'address/' + id);
     }
 
     addAddress( addrs: Address) {
-        return this.http.post(`${Backend.URL}address`, addrs);
+        return this.http.post(`${Backend.API_URL}address`, addrs);
     }
 
 }

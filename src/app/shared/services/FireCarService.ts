@@ -11,24 +11,24 @@ export class FireCarService {
     constructor(private http: HttpClient) { }
 
     getFireCars(): Observable<FireCar[]> {
-        const cars = this.http.get(Backend.URL + 'firecar');
+        const cars = this.http.get(Backend.API_URL + 'firecar');
         return <Observable<FireCar [] >> cars;
     }
 
     getFireCarById( id: number ): Observable< FireCar > {
-        return <Observable<FireCar>>this.http.get(`${Backend.URL}firecar/${id}`);
+        return <Observable<FireCar>>this.http.get(`${Backend.API_URL}firecar/${id}`);
     }
 
     addFireCar( car: FireCar) {
-        return this.http.post(`${Backend.URL}firecar`, car);
+        return this.http.post(`${Backend.API_URL}firecar`, car);
     }
 
     updateFireCar( car: FireCar) {
-        return this.http.put(Backend.URL + 'firecar/' + car.id, car);
+        return this.http.put(Backend.API_URL + 'firecar/' + car.id, car);
     }
 
     deactivateFireCar(id: number)  {
-        return this.http.delete(Backend.URL + 'firecar/' + id);
+        return this.http.delete(Backend.API_URL + 'firecar/' + id);
     }
 
 }
