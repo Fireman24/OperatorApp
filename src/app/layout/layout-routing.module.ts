@@ -23,6 +23,7 @@ const routes: Routes = [
             { path: 'firecar', loadChildren: './firecar/firecar.module#FireCarModule' },
             { path: 'departure', loadChildren: './departure-list/departure-list.module#DepartureListModule' },
             { path: 'departure/:id', loadChildren: './departure/departure.module#DepartureModule' },
+            { path: 'fire', loadChildren: './fire-list/fire-list.module#FireListModule' },
             { path: 'map-page', loadChildren: './map-page/map-page.module#MapPageModule' }
         ]
     }

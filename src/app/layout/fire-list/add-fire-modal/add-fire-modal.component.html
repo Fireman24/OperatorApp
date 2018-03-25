@@ -1,6 +1,5 @@
-
 <div class="modal-header">
-    <h4 class="modal-title">{{ 'Departure' | translate }}</h4>
+    <h4 class="modal-title">{{ 'Fire' | translate }}</h4>
     <button type="button" class="close" aria-label="Close" (click)="CloseModal();">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -19,8 +18,12 @@
         <div class="invalid-feedback" *ngIf="AddressSearchFailed"> {{ 'Not found' | translate }}</div>
     </div>
     <div class="form-group">
-        <label for="intent">{{ 'Intent' | translate }}</label>
-        <input id="intent" type="text" [(ngModel)]="_departure.intent" class="form-control"/>
+        <label for="comments">{{ 'Comments' | translate }}</label>
+        <input id="comments" type="text" [(ngModel)]="_fire.comments" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="receiver">{{ 'Receiver' | translate }}</label>
+        <input id="receiver" type="text" [(ngModel)]="_fire.receiver" class="form-control"/>
     </div>
 </div>
 <div class="modal-footer">

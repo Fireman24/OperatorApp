@@ -16,15 +16,17 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/merge';
 import {GpsPoint} from '../../../shared/modules/map-module/GpsPoint';
 import {StringDateProvider} from '../../../shared/providers/StringDateProvider';
+import {Fire} from '../../../shared/models/Fire';
+import {FireService} from '../../../shared/services/FireService';
 
 @Component({
-    selector: 'app-add-departure-modal',
-    templateUrl: './add-departure-modal.component.html',
+    selector: 'app-add-fire-modal',
+    templateUrl: './add-fire-modal.component.html',
     providers: [ DepartureService, AddressService, StringDateProvider]
 })
-export class AddDepartureModalComponent implements OnInit {
+export class AddFireModalComponent implements OnInit {
 
-    private _departure: Departure = new Departure();
+    private _fire: Fire = new Fire();
 
     @Output()
     public OnClose: EventEmitter<any> = new EventEmitter();
@@ -58,14 +60,16 @@ export class AddDepartureModalComponent implements OnInit {
             return;
         }
         this._address = value;
-        this._departure.address = this._address.label;
-        this._departure.gpsPoint = this._address.gpsPoint;
-        this._departure.gpsPoint.id = 0;
+        this._fire.address = this._address.label;
+        this._fire.gpsPoint = this._address.gpsPoint;
+        this._fire.rank = this._address.rank;
+        this._fire.department = this._address.department;
+        this._fire.gpsPoint.id = 0;
     }
 
 
     constructor(private _modalService: NgbActiveModal,
-                private _departureService: DepartureService,
+                private _fireService: FireService,
                 public _addressService: AddressService) {
     }
 
@@ -82,8 +86,8 @@ export class AddDepartureModalComponent implements OnInit {
     }
 
     SaveButtonClick() {
-        this._departure.dateTime = new Date(Date.now()).toISOString();
-        this._departureService.addDeparture(this._departure).subscribe(data => {
+        this._fire.startDateTime = new Date(Date.now()).toISOString();
+        this._fireService.addFire(this._fire).subscribe(data => {
             this.CloseModal();
         });
     }

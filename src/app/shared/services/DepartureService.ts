@@ -22,6 +22,7 @@ export class DepartureService {
     }
 
     addDeparture(dep: Departure) {
+
         return this.http.post(Backend.API_URL + 'departure', dep);
     }
 

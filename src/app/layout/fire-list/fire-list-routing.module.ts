@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {DepartureListComponent} from './fire-list.component';
+import {FireListComponent} from './fire-list.component';
 
 
 const routes: Routes = [
     {
         path: '',
-        component: DepartureListComponent
+        component: FireListComponent
     }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class DepartureListRoutingModule {}
+export class FireListRoutingModule {}

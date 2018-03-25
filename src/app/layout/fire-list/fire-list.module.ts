@@ -6,14 +6,14 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { PageHeaderModule } from '../../shared/';
 import {FormsModule} from '@angular/forms';
 import {MomentModule} from 'angular2-moment';
-import {DepartureListRoutingModule} from './fire-list-routing.module';
-import {AddDepartureModalComponent} from './add-fire-modal/add-fire-modal.component';
-import {DepartureListComponent} from './fire-list.component';
+import {AddFireModalComponent} from './add-fire-modal/add-fire-modal.component';
+import {FireListComponent} from './fire-list.component';
+import {FireListRoutingModule} from './fire-list-routing.module';
 
 
 @NgModule({
-    imports: [CommonModule, DepartureListRoutingModule, PageHeaderModule, TranslateModule, NgbModule.forRoot(), FormsModule, MomentModule],
-    declarations: [DepartureListComponent, AddDepartureModalComponent],
-    entryComponents: [AddDepartureModalComponent]
+    imports: [CommonModule, FireListRoutingModule, PageHeaderModule, TranslateModule, NgbModule.forRoot(), FormsModule, MomentModule],
+    declarations: [FireListComponent, AddFireModalComponent],
+    entryComponents: [AddFireModalComponent]
 })
-export class DepartureListModule {}
+export class FireListModule {}

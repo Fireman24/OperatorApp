@@ -1,35 +1,25 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {routerTransition} from '../../router.animations';
-import {FireCar} from '../../shared/models/FireCar';
-import {StorageService} from '../../shared/services/StorageService';
-import {Departure} from '../../shared/models/Departure';
-import {DepartureService} from '../../shared/services/DepartureService';
-import {FireCarFormComponent} from '../firecar/firecar-form/firecar-form.component';
+import {FireService} from '../../shared/services/FireService';
+import {Fire} from '../../shared/models/Fire';
+import {AddFireModalComponent} from './add-fire-modal/add-fire-modal.component';
 import {Router} from '@angular/router';
-import {AddDepartureModalComponent} from './add-fire-modal/add-fire-modal.component';
 
 
 @Component({
-    selector: 'app-departure-list',
-    templateUrl: './departure-list.component.html',
-    providers: [DepartureService, StorageService, NgbModal]
+    selector: 'app-fire-list',
+    templateUrl: './fire-list.component.html',
+    providers: [FireService, NgbModal]
 })
 
-export class DepartureListComponent implements OnInit {
-    private readonly _departureAlert = 'departure_alert';
-    private _hideAlert: boolean;
+export class FireListComponent implements OnInit {
+
+    private _fires: Fire[] = [];
     private _loading = false;
 
-    fireCarsList: FireCar[] = [];
-    private _departures: Departure[] = [];
-
-    constructor(private _departureService: DepartureService,
-                private _storage: StorageService,
-                private _modalService: NgbModal,
-                private router: Router ) {
-        const alert = _storage.GetLocalAsBoolean(this._departureAlert);
-        this._hideAlert = alert;
+    constructor(private _fireService: FireService,
+                private _router: Router,
+                private _modalService: NgbModal) {
     }
 
     ngOnInit(): void {
@@ -38,27 +28,22 @@ export class DepartureListComponent implements OnInit {
 
     RefreshList() {
         this._loading = true;
-        this._departureService.getDepartures().subscribe(data => {
-            this._departures = data;
+        this._fireService.getFires().subscribe(data => {
+            this._fires = data;
             this._loading = false;
         });
     }
 
     AddButtonClick() {
-        const modalRef = this._modalService.open(AddDepartureModalComponent);
+        const modalRef = this._modalService.open(AddFireModalComponent);
         const form = modalRef.componentInstance;
         form.OnClose.subscribe(e => {
             this.RefreshList();
         });
     }
 
-    CloseAlert() {
-        this._hideAlert = true;
-        this._storage.SetLocalData('departure_alert', this._hideAlert.toString());
-    }
-
-    ManageButtonClick(dep: Departure) {
-        this.router.navigate(
-            ['/departure', dep.id]);
+    ManageButtonClick(fire: Fire) {
+        this._router.navigate(
+            ['/fire', fire.id]);
     }
 }

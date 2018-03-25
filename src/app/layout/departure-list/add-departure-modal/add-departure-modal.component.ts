@@ -83,6 +83,7 @@ export class AddDepartureModalComponent implements OnInit {
 
     SaveButtonClick() {
         this._departure.dateTime = new Date(Date.now()).toISOString();
+        this._departure.gpsPoint.id = 0;
         this._departureService.addDeparture(this._departure).subscribe(data => {
             this.CloseModal();
         });

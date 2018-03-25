@@ -78,7 +78,6 @@ export class AddressFormComponent implements OnInit {
             this._address.gpsPoint.lon = m.lng;
             this._address.gpsPoint.lat = m.lat;
         }
-        console.warn(this.Address);
             this.addressService.addAddress(this._address).subscribe(
                 (data: Address) => {
                     this.Address = data;
