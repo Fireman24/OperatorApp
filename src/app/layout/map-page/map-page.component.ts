@@ -9,21 +9,24 @@ import {Departure} from '../../shared/models/Departure';
 import {Hydrant} from '../../shared/models/Hydrant';
 import {Observable} from 'rxjs/Observable';
 import {forEach} from '@angular/router/src/utils/collection';
+import {FireService} from '../../shared/services/FireService';
 
 @Component({
     selector: 'app-map-page',
     templateUrl: './map-page.component.html',
-    providers: [ DepartureService, DepartmentService, HydrantService]
+    providers: [ DepartureService, DepartmentService, HydrantService, FireService]
 })
 export class MapPageComponent implements OnInit {
     @ViewChild('map') _map: MapComponent;
 
     private _departments: L.Marker[] = [];
     private _departures: L.Marker[] = [];
+    private _fires: L.Marker[] = [];
     private _hydrants: L.Marker[] = [];
 
     constructor(private _departureService: DepartureService,
                 private _departmentService: DepartmentService,
+                private _fireService: FireService,
                 private _hydrantService: HydrantService) {}
 
     ngOnInit() {
@@ -39,6 +42,17 @@ export class MapPageComponent implements OnInit {
                 this._departures = [];
                 for (const d of data) {
                     this._departures.push(this._map.AddIcon(d.gpsPoint, 'assets/images/departureMapIcon.png'));
+                }
+            }
+        );
+        this._fireService.getFires().subscribe(
+            data => {
+                for (const d of this._fires) {
+                    this._map.RemoveMarker(d);
+                }
+                this._fires = [];
+                for (const d of data) {
+                    this._fires.push(this._map.AddIcon(d.gpsPoint, 'assets/images/fireMapIcon.png'));
                 }
             }
         );
