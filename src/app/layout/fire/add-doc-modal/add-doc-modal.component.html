@@ -1,0 +1,19 @@
+
+<div class="modal-header">
+    <h4 class="modal-title">{{ 'Add document' | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="CloseModal();">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <input type="file"
+                       id="file"
+                       (change)="handleFileInput($event.target.files)">
+            </div>
+        </div>
+    </div>
+</div>
+

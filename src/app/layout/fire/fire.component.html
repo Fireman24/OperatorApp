@@ -1,0 +1,161 @@
+<div>
+    <div class="row">
+        <div class="col-xl-6 text-xl-left">
+            <h3>{{_fire.address}}</h3>
+        </div>
+        <div class="col-xl-6 text-xl-right">
+            <button type="button" class="btn btn-link" (click)="ReloadData();">
+                <i *ngIf="!_loading" style="color: grey;" class="fa fa-refresh fa-2x"></i>
+                <i *ngIf="_loading" style="color: grey;" class="fa fa-spin fa-refresh fa-2x"></i>
+            </button>
+            <button type="button" class="btn btn-success" (click)="SaveData();">{{ 'Save' | translate }}</button>
+        </div>
+    </div>
+    <div class="card-body table-responsive">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="address">{{ 'Address' | translate }}</label>
+                    <input type="text" class="form-control" id="address" [(ngModel)]="_fire.address">
+                </div>
+                <div class="form-group">
+                    <label for="rank">{{ 'Rank' | translate }}</label>
+                    <input type="text" class="form-control" id="rank" [(ngModel)]="_fire.rank">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="manager">{{ 'Manager' | translate }}</label>
+                    <input type="text" class="form-control" id="manager" [(ngModel)]="_fire.manager">
+                </div>
+                <div class="form-group">
+                    <label for="receiver">{{ 'Receiver' | translate }}</label>
+                    <input type="text" class="form-control" id="receiver" [(ngModel)]="_fire.receiver">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="comments">{{ 'Comments' | translate }}</label>
+                    <input type="text" class="form-control" id="comments" [(ngModel)]="_fire.comments">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col">
+                <div class="checkbox">
+                    <label>
+                        <input id="active" type="checkbox" checked [(ngModel)]="_fire.active" > {{'Active' | translate }}
+                    </label>
+                </div>
+            </div>
+            <div class="col">
+                <i>{{ 'Date' | translate }} {{ 'Time' | translate }}: {{ _fire.startDateTime | amFromUtc | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm' }}</i>
+                <button *ngIf="false" type="button" class="btn btn-sm btn-link">{{ 'Edit' | translate }}</button>
+            </div>
+            <div class="col">
+                <i>{{ 'Department' | translate }} {{ _fire.department.name}}</i>
+                <button *ngIf="false" type="button" class="btn btn-sm btn-link">{{ 'Edit' | translate }}</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card col">
+                <div class="card-header row">
+                    <div class="col-xl-6 text-xl-left">
+                        <h3>{{'Firecars' | translate }}</h3>
+                    </div>
+                    <div class="col-xl-6 text-xl-right">
+                        <button type="button" class="btn btn-primary -align-right" (click)="AddCarButtonClick();">{{ 'Add' | translate }}</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table *ngIf="(_fire.fireCars != null) && (_fire.fireCars.length > 0)" class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">{{ 'Name' | translate }}</th>
+                            <th scope="col">{{ 'Specialization' | translate }}</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let car of _fire.fireCars">
+                            <td>{{car.name}}</td>
+                            <td>{{car.specialization}}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger" (click)="RemoveFirecar(car);" >{{ 'Remove' | translate }}</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="card col">
+                <div class="card-header row">
+                    <div class="col-xl-6 text-xl-left">
+                        <h3>{{'Documents' | translate }}</h3>
+                    </div>
+                    <div class="col-xl-6 text-xl-right">
+                        <button type="button" class="btn btn-primary -align-right" (click)="AddDocument();" >{{ 'Add' | translate }}</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table *ngIf="(_fire.images != null) && (_fire.images.length > 0)" class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">{{ 'Name' | translate }}</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let doc of _fire.images">
+                            <td>{{doc.name}}</td>
+                            <td>
+                                <button type="button" class="btn btn-info" (click)="OpenDocumentButtonClick(doc);">{{ 'Open' | translate }}</button>
+                                <button type="button" class="btn btn-danger" (click)="RemoveDocumentButtonClick(doc);">{{ 'Remove' | translate }}</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="card col">
+                <div class="card-header row">
+                    <div class="col-xl-6 text-xl-left">
+                        <h3>{{'History' | translate }}</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="input-group mb-3">
+                            <input type="text" #htext class="form-control" placeholder="{{ 'Message' | translate }}">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" (click)="AddHistoryRecord(htext.value);" type="button">{{ 'Add' | translate }}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table *ngIf="(_fire.history != null) && (_fire.history.length > 0)" class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">{{ 'Message' | translate }}</th>
+                            <th scope="col">{{ 'Time' | translate }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let hys of _fire.history">
+                            <td>{{hys.record}}</td>
+                            <td>{{hys.dateTime | amFromUtc | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm'}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

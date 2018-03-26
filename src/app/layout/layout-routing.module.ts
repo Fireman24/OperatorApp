@@ -24,6 +24,7 @@ const routes: Routes = [
             { path: 'departure', loadChildren: './departure-list/departure-list.module#DepartureListModule' },
             { path: 'departure/:id', loadChildren: './departure/departure.module#DepartureModule' },
             { path: 'fire', loadChildren: './fire-list/fire-list.module#FireListModule' },
+            { path: 'fire/:id', loadChildren: './fire/fire.module#FireModule' },
             { path: 'map-page', loadChildren: './map-page/map-page.module#MapPageModule' }
         ]
     }
