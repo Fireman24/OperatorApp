@@ -28,8 +28,8 @@ export class FireComponent implements OnInit {
     private subscription: Subscription;
     _loading: boolean;
     _fire: Fire = new Fire();
-
-
+    public broadcastVisible = false;
+    public mapVisible = false;
 
     constructor(private _activateRoute: ActivatedRoute,
                 private _router: Router,
@@ -100,5 +100,10 @@ export class FireComponent implements OnInit {
 
     RemoveDocumentButtonClick(doc: Image) {
         this._fireService.deleteDocument(this._fire.id, doc).subscribe(data => this.ReloadData());
+    }
+
+    GoToFirecarInfo(car: FireCar) {
+        this._router.navigate(
+            ['/firecar', car.id]);
     }
 }

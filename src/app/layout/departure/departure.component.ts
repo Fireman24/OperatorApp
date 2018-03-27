@@ -100,4 +100,11 @@ export class DepartureComponent implements OnInit {
     RemoveDocumentButtonClick(doc: Image) {
         this._departureService.deleteDocument(this._departure.id, doc).subscribe(data => this.ReloadData());
     }
+
+    GoToFirecarInfo(car: FireCar) {
+        this._router.navigate(
+            ['/firecar', car.id]);
+    }
+
+
 }

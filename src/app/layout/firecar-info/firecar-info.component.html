@@ -1,0 +1,72 @@
+<div>
+    <div class="row">
+        <div class="col-xl-6 text-xl-left">
+            <h3>{{_firecar.name}}</h3>
+        </div>
+        <div class="col-xl-6 text-xl-right">
+            <button type="button" class="btn btn-link" (click)="ReloadData();">
+                <i *ngIf="!_loading" style="color: grey;" class="fa fa-refresh fa-2x"></i>
+                <i *ngIf="_loading" style="color: grey;" class="fa fa-spin fa-refresh fa-2x"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body table-responsive">
+        <br>
+        <div class="row">
+            <div class="col">
+                <p><button type="button" class="btn btn-outline-primary" (click)="broadcastVisible = !broadcastVisible"
+                        [attr.aria-expanded]="!broadcastVisible" aria-controls="broadcast">
+                    {{'Broadcast' | translate }}
+                </button>
+                </p>
+                <div id="broadcast" [ngbCollapse]="broadcastVisible">
+                    <div class="card">
+                        <div class="card-body" >
+                            <iframe scrolling="no" src="http://live-astanatv.daitsuna.com/dev" allowfullscreen="" width="100%" height="420px" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <p><button type="button" class="btn btn-outline-primary" (click)="mapVisible = !mapVisible"
+                        [attr.aria-expanded]="!mapVisible" aria-controls="map">
+                    {{'Map' | translate }}
+                </button>
+                </p>
+                <br>
+                <div id="map" [ngbCollapse]="mapVisible">
+                    <div class="card">
+                        <div class="card-body">
+                            <div  style="height: 600px; width: 100%;">
+                                <app-map #map style="height: 100%; width: 100%;" ></app-map>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <p class="h6">{{'Specialization' | translate}}</p>
+                <p><mark>{{_firecar.specialization}}</mark></p>
+            </div>
+            <div class="col">
+                <p class="h6">{{'Department' | translate}}</p>
+                <p><mark>{{_firecar.department.name}}</mark></p>
+                <p><mark>{{_firecar.department.address}}</mark></p>
+            </div>
+            <div class="col">
+                <p class="h6">{{'Number' | translate}}</p>
+                <p><mark>{{_firecar.num}}</mark></p>
+            </div>
+            <div class="col">
+                <p class="h6">{{'Last update ' | translate}}</p>
+                <p><mark>{{_firecar.lastUpdateTime | amTimeAgo | amLocale:'ru' }}</mark></p>
+            </div>
+        </div>
+    </div>
+</div>
