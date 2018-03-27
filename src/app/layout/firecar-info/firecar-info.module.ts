@@ -7,11 +7,13 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MomentModule} from 'angular2-moment';
 import {FirecarInfoRoutingModule} from './firecar-info-routing.module';
 import {FirecarInfoComponent} from './firecar-info.component';
+import {MapModule} from '../../shared/modules/map-module/map.module';
 
 
 
 @NgModule({
-    imports: [CommonModule, FirecarInfoRoutingModule, PageHeaderModule, TranslateModule, NgbModule.forRoot(), FormsModule, MomentModule],
+    imports: [CommonModule, FirecarInfoRoutingModule, MapModule, PageHeaderModule,
+        TranslateModule, NgbModule.forRoot(), FormsModule, MomentModule],
     declarations: [FirecarInfoComponent]
 })
 export class FirecarInfoModule {}
