@@ -16,6 +16,7 @@ import {MapComponent} from '../../shared/modules/map-module/map.component';
 import {HydrantService} from '../../shared/services/HydrantService';
 import {FireService} from '../../shared/services/FireService';
 import {DepartmentService} from '../../shared/services/DepartmentService';
+import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
 @Component({
     selector: 'app-firecar-info',
@@ -34,6 +35,7 @@ export class FirecarInfoComponent implements OnInit {
     private _departures: L.Marker[] = [];
     private _fires: L.Marker[] = [];
     private _hydrants: L.Marker[] = [];
+    public videoUrl: SafeHtml;
 
     constructor(private _activateRoute: ActivatedRoute,
                 private _router: Router,
@@ -43,7 +45,8 @@ export class FirecarInfoComponent implements OnInit {
                 private _departureService: DepartureService,
                 private _departmentService: DepartmentService,
                 private _fireService: FireService,
-                private _hydrantService: HydrantService) {
+                private _hydrantService: HydrantService,
+                private _sanitizer: DomSanitizer) {
         this.subscription = _activateRoute.params.subscribe(params => this.id = params['id']);
     }
 
@@ -62,7 +65,10 @@ export class FirecarInfoComponent implements OnInit {
             if (this._firecar.gpsPoint != null && this._firecar.gpsPoint.lon !== 0) {
                 this._firecarMarker = this._map.AddIcon(this._firecar.gpsPoint, 'assets/images/carMapIcon.png');
             }
-
+            if (this._firecar.broadcast != null && this._firecar.broadcast.url.length>0)
+            {
+                this.videoUrl = this._sanitizer.bypassSecurityTrustResourceUrl(this._firecar.broadcast.url);
+            }
             this._loading = false;
         });
     }

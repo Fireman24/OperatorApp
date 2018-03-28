@@ -6,6 +6,7 @@ import {Hydrant} from '../../shared/models/Hydrant';
 import {FireCarService} from '../../shared/services/FireCarService';
 import {FireCar} from '../../shared/models/FireCar';
 import {FireCarFormComponent} from './firecar-form/firecar-form.component';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-firecar',
@@ -17,7 +18,9 @@ export class FireCarComponent implements OnInit {
     loading = false;
     fireCarsList: FireCar[] = [];
 
+
     constructor(private fireCarService: FireCarService, private modalService: NgbModal) {
+
     }
 
     ngOnInit(): void {

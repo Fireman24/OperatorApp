@@ -10,6 +10,7 @@
         <table class="table">
             <thead>
             <tr>
+                <th>{{ 'Id' | translate }}</th>
                 <th>{{ 'Name' | translate }}</th>
                 <th>{{ 'Number' | translate }}</th>
                 <th>{{ 'Specialization' | translate }}</th>
@@ -18,6 +19,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let car of fireCarsList">
+                <td>{{car.id}}</td>
                 <td>{{car.name}}</td>
                 <td>{{car.num}}</td>
                 <td>{{car.specialization}}</td>
