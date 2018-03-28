@@ -63,7 +63,7 @@ export class FirecarInfoComponent implements OnInit {
                 this._map.RemoveMarker(this._firecarMarker);
             }
             if (this._firecar.gpsPoint != null && this._firecar.gpsPoint.lon !== 0) {
-                this._firecarMarker = this._map.AddIcon(this._firecar.gpsPoint, 'assets/images/carMapIcon.png');
+                this._firecarMarker = this._map.AddIcon(this._firecar.gpsPoint, 'assets/images/firecarMapIcon.png');
             }
             if (this._firecar.broadcast != null && this._firecar.broadcast.url.length>0)
             {
