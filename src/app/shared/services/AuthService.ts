@@ -25,7 +25,7 @@ export class AuthService {
     CheckToken(token: string): Observable<Operator> {
         const header = new HttpHeaders();
         header.append('Authorization', 'Bearer ' + token);
-        return <Observable<Operator>> this.http.get(this.ApiURL + 'token/check', );
+        return <Observable<Operator>> this.http.get(this.ApiURL + 'token/check', { headers : this.GetAuthHeader()} );
     }
 
     GetAuthHeader(): HttpHeaders {

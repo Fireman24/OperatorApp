@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import {AuthService} from '../../../shared/services/AuthService';
+import {Operator} from '../../../shared/models/Operator';
 
 @Component({
     selector: 'app-header',
@@ -9,8 +11,11 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
     pushRightClass = 'push-right';
+    private _operator: Operator = new Operator();
 
-    constructor(private translate: TranslateService, public router: Router) {
+    constructor(private translate: TranslateService,
+                private _auth: AuthService,
+                public router: Router) {
 
         this.translate.addLangs(['en', 'ru', 'kz']);
         this.translate.setDefaultLang('ru');
@@ -28,7 +33,11 @@ export class HeaderComponent implements OnInit {
         });
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this._auth.CheckToken(this._auth.ReadLocalToken()).subscribe(data => {
+            this._operator = data;
+        });
+    }
 
     isToggled(): boolean {
         const dom: Element = document.querySelector('body');
@@ -46,7 +55,7 @@ export class HeaderComponent implements OnInit {
     }
 
     onLoggedout() {
-        localStorage.removeItem('isLoggedin');
+        this._auth.RemoveLocalToken();
     }
 
     changeLang(language: string) {
