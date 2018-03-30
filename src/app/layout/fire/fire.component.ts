@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {Departure} from '../../shared/models/Departure';
 import {FireService} from '../../shared/services/FireService';
 import * as moment from 'moment';
+import 'moment/locale/ru';
 import {Observable} from 'rxjs/Observable';
 import {HistoryRecord} from '../../shared/models/HistoryRecord';
 import {AddDepartureModalComponent} from '../departure-list/add-departure-modal/add-departure-modal.component';
@@ -37,9 +38,11 @@ export class FireComponent implements OnInit {
                 private _http: HttpClient,
                 private _modalService: NgbModal) {
         this.subscription = _activateRoute.params.subscribe(params => this.id = params['id']);
+
     }
 
     ngOnInit() {
+        moment.locale('ru');
         this.ReloadData();
     }
 

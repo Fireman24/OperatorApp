@@ -65,7 +65,7 @@
             </div>
             <div class="col">
                 <p class="h6">{{'Last update ' | translate}}</p>
-                <p><mark>{{_firecar.lastUpdateTime | amTimeAgo | amLocale:'ru' }}</mark></p>
+                <p><mark>{{_firecar.lastUpdateTime  |amLocale:'ru'| amFromUtc | amLocal |  amTimeAgo  }}</mark></p>
             </div>
         </div>
     </div>

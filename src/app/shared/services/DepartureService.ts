@@ -41,18 +41,18 @@ export class DepartureService {
     }
 
     deleteFirecar(idDeparture: number, car: FireCar) {
-        return this.http.delete(Backend.API_URL + 'departure/' + idDeparture + '/firecar/' + car.id);
+        return this.http.delete(Backend.API_URL + 'departure/' + idDeparture + '/firecar/' + car.id,{ headers : this.authService.GetAuthHeader()});
     }
 
     addDocument(idDeparture: number, fileToUpload: File) {
         const endpoint = Backend.API_URL + 'departure/' + idDeparture + '/image/';
         const formData: FormData = new FormData();
         formData.append('uploadedFile', fileToUpload, fileToUpload.name);
-        return this.http.post(endpoint, formData );
+        return this.http.post(endpoint, formData , { headers : this.authService.GetAuthHeader()});
     }
 
     deleteDocument(idDeparture: number, image: Image) {
-        return this.http.delete(Backend.API_URL + 'departure/' + idDeparture + '/image/' + image.id);
+        return this.http.delete(Backend.API_URL + 'departure/' + idDeparture + '/image/' + image.id, { headers : this.authService.GetAuthHeader()});
     }
 
 }
