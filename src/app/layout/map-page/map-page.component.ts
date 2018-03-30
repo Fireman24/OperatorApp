@@ -11,6 +11,7 @@ import {Observable} from 'rxjs/Observable';
 import {forEach} from '@angular/router/src/utils/collection';
 import {FireService} from '../../shared/services/FireService';
 import {FireCarService} from '../../shared/services/FireCarService';
+import {AuthService} from '../../shared/services/AuthService';
 
 @Component({
     selector: 'app-map-page',
@@ -30,10 +31,14 @@ export class MapPageComponent implements OnInit {
                 private _departmentService: DepartmentService,
                 private _fireService: FireService,
                 private _firecarService: FireCarService,
+                private _auth: AuthService,
                 private _hydrantService: HydrantService) {}
 
     ngOnInit() {
         this.DrawMarkers();
+        this._auth.CheckToken(this._auth.ReadLocalToken()).subscribe(data => {
+            this._map.SetViewCenter(data.geoZone);
+        })
     }
 
     DrawMarkers() {

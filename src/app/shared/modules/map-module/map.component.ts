@@ -130,4 +130,8 @@ export class MapComponent  implements  OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.map.remove();
     }
+
+    SetViewCenter(point: GpsPoint) {
+        this.map.panTo([point.lat,point.lon]);
+    }
 }
