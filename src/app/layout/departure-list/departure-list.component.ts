@@ -61,4 +61,12 @@ export class DepartureListComponent implements OnInit {
         this.router.navigate(
             ['/departure', dep.id]);
     }
+
+    ShowAllDepartures() {
+        this._loading = true;
+        this._departureService.getDepartures(true).subscribe(data => {
+            this._departures = data;
+            this._loading = false;
+        });
+    }
 }

@@ -4,6 +4,7 @@
             <i *ngIf="!_loading" style="color: grey;" class="fa fa-refresh fa-2x"></i>
             <i *ngIf="_loading" style="color: grey;" class="fa fa-spin fa-refresh fa-2x"></i>
         </button>
+        <button type="button" class="btn btn-link" (click)="ShowAllDepartures();">{{ 'Show all' | translate }}</button>
         <button type="button" class="btn btn-primary" (click)="AddButtonClick();">{{ 'Add' | translate }}</button>
     </app-page-header>
     <div class="card-body table-responsive">

@@ -46,4 +46,12 @@ export class FireListComponent implements OnInit {
         this._router.navigate(
             ['/fire', fire.id]);
     }
+
+    ShowAllFires() {
+        this._loading = true;
+        this._fireService.getFires(true).subscribe(data => {
+            this._fires = data;
+            this._loading = false;
+        });
+    }
 }
