@@ -25,16 +25,17 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 })
 export class FirecarInfoComponent implements OnInit {
 
-    id: number;
-    private subscription: Subscription;
-    _loading: boolean;
-    _firecar: FireCar = new FireCar();
+    public id: number;
+    public  subscription: Subscription;
+    public mapVisible: boolean;
+    public _loading: boolean;
+    public _firecar: FireCar = new FireCar();
     @ViewChild('map') _map: MapComponent;
-    _firecarMarker: L.Marker;
-    private _departments: L.Marker[] = [];
-    private _departures: L.Marker[] = [];
-    private _fires: L.Marker[] = [];
-    private _hydrants: L.Marker[] = [];
+    public _firecarMarker: L.Marker;
+    public _departments: L.Marker[] = [];
+    public _departures: L.Marker[] = [];
+    public _fires: L.Marker[] = [];
+    public _hydrants: L.Marker[] = [];
     public videoUrl: SafeHtml;
 
     constructor(private _activateRoute: ActivatedRoute,

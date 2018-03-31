@@ -30,8 +30,8 @@ export class AddCarModalComponent implements OnInit {
     public car: FireCar = null;
 
 
-    private _cars: FireCar[] = [];
-    private _departments: Department[] = [];
+    public _cars: FireCar[] = [];
+    public _departments: Department[] = [];
 
     @Output()
     public OnClose: EventEmitter<any> = new EventEmitter();

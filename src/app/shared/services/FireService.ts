@@ -16,7 +16,7 @@ export class FireService {
                 private authService: AuthService) { }
 
     getFires(all = false): Observable<Fire[]> {
-        const fires = this.http.get(Backend.API_URL + 'fire' + (all ? 'all=true' : '' ) , { headers : this.authService.GetAuthHeader()});
+        const fires = this.http.get(Backend.API_URL + 'fire' + (all ? '?all=true' : '' ) , { headers : this.authService.GetAuthHeader()});
         return <Observable<Fire [] >> fires;
     }
 

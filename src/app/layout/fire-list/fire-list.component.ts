@@ -14,8 +14,8 @@ import {Router} from '@angular/router';
 
 export class FireListComponent implements OnInit {
 
-    private _fires: Fire[] = [];
-    private _loading = false;
+    public _fires: Fire[] = [];
+    public _loading = false;
 
     constructor(private _fireService: FireService,
                 private _router: Router,

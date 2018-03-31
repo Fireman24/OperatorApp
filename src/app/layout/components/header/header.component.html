@@ -62,14 +62,14 @@
             </li>
             <li class="nav-item dropdown" ngbDropdown>
                 <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-                    <i class="fa fa-user"></i> {{_operator.name}} <b class="caret"></b>
+                    <i class="fa fa-user"></i> {{operator.name}} <b class="caret"></b>
                 </a>
                 <div class="dropdown-menu-right" ngbDropdownMenu>
                     <a class="dropdown-item">
-                        <i class="fa fa-fw fa-user"></i> {{_operator.login}}
+                        <i class="fa fa-fw fa-user"></i> {{operator.login}}
                     </a>
                     <a class="dropdown-item">
-                        <i class="fa fa-fw fa-star"></i> {{_operator.role}}
+                        <i class="fa fa-fw fa-star"></i> {{operator.role}}
                     </a>
                     <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()">
                         <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}

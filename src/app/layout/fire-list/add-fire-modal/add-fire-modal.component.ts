@@ -26,7 +26,7 @@ import {FireService} from '../../../shared/services/FireService';
 })
 export class AddFireModalComponent implements OnInit {
 
-    private _fire: Fire = new Fire();
+    public _fire: Fire = new Fire();
 
     @Output()
     public OnClose: EventEmitter<any> = new EventEmitter();

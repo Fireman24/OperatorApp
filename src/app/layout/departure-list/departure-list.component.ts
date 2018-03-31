@@ -18,11 +18,11 @@ import {Router} from '@angular/router';
 
 export class DepartureListComponent implements OnInit {
     private readonly _departureAlert = 'departure_alert';
-    private _hideAlert: boolean;
-    private _loading = false;
+    public _hideAlert: boolean;
+    public _loading = false;
 
-    fireCarsList: FireCar[] = [];
-    private _departures: Departure[] = [];
+    public fireCarsList: FireCar[] = [];
+    public _departures: Departure[] = [];
 
     constructor(private _departureService: DepartureService,
                 private _storage: StorageService,

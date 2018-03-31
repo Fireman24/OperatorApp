@@ -24,12 +24,12 @@ import {StringDateProvider} from '../../../shared/providers/StringDateProvider';
 })
 export class AddDepartureModalComponent implements OnInit {
 
-    private _departure: Departure = new Departure();
+    public _departure: Departure = new Departure();
 
     @Output()
     public OnClose: EventEmitter<any> = new EventEmitter();
 
-    private _address: Address = new Address();
+    public _address: Address = new Address();
     public AddressSearching = false;
     public AddressSearchFailed = false;
     public hideSearchingAddress = new Observable(() => () => this.AddressSearching = false);

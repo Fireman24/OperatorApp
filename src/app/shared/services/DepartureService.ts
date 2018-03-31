@@ -15,7 +15,7 @@ export class DepartureService {
                 private authService: AuthService) { }
 
     getDepartures(all = false): Observable<Departure[]> {
-        const deps = this.http.get(Backend.API_URL + 'departure' + (all ? 'all=true' : '' ) , { headers : this.authService.GetAuthHeader()});
+        const deps = this.http.get(Backend.API_URL + 'departure' + (all ? '?all=true' : '' ) , { headers : this.authService.GetAuthHeader()});
         return <Observable<Departure [] >> deps;
     }
 

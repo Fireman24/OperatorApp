@@ -11,7 +11,7 @@ import {Operator} from '../../../shared/models/Operator';
 })
 export class HeaderComponent implements OnInit {
     pushRightClass = 'push-right';
-    private _operator: Operator = new Operator();
+    public operator: Operator = new Operator();
 
     constructor(private translate: TranslateService,
                 private _auth: AuthService,
@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit() {
         this._auth.CheckToken(this._auth.ReadLocalToken()).subscribe(data => {
-            this._operator = data;
+            this.operator = data;
         });
     }
 
